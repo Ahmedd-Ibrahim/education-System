@@ -24,7 +24,6 @@
                             <thead>
                             <tr>
                                 <th data-toggle="true">Title</th>
-
                                 <th data-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>
                             </tr>
@@ -41,6 +40,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-custom d-inline-block" href="{{route('admin.class-schedule.edit',$scheduler->id)}}">Edit <i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-primary btn-custom d-inline-block" href="{{route('admin.class-schedule.active',$scheduler->id)}}"> {{$scheduler->active}}<i class="fa fa-edit"></i></a>
                                             <a class="btn btn-primary btn-custom d-inline-block" href="{{route('admin.class-schedule.show',$scheduler->id)}}"> show Table <i class="fa fa-edit"></i></a>
                                             <form class="d-inline-block" action="{{route('admin.class-schedule.destroy',$scheduler)}}" METHOD="POST">
                                                 @csrf
@@ -55,9 +55,7 @@
                             <thead>
                             <tr>
                                 <th data-toggle="true">title</th>
-
-
-                                <th data-hide="all"> Created at </th>
+                                <th daxta-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>
                             </tr>
                             </thead>

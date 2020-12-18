@@ -27,8 +27,10 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     /* Roles and permission */
     Route::namespace('roles')->group(function(){
         Route::resource('roles', 'RolesController');
+        Route::resource('permission', 'PermissionController')->only(['create','store']);
     });
     /* End roles & Permissions*/
+
 
     Route::resource('siteSettings','settings\basicsInfoController')->except(['show','store','edit','destroy','create']); //  Site basics Info settings
 
@@ -39,10 +41,13 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     Route::resource('teacher', 'teacherController')->except('show');
 
     Route::resource('subject','SubjectController')->except('show');
+    Route::resource('subject-mini-group','SubjectMiniGroupController')->except('show');
 
     Route::resource('studyPhase','PhaseController')->except('show');
     /* Delete Year of Phase */
     Route::delete('studyPhaseDeleteYear/{id}',"PhaseController@delete")->name('phase.delete');
+
+    Route::resource('group','GroupController')->except('show');
 
     Route::resource('class','classesController')->except('show');
 
@@ -51,11 +56,19 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     Route::resource('food-cycle', 'FoodCycleController');
 
     Route::resource('class-schedule','ClassSchedulerController');
+    Route::get('class-schedule/active/{id}','ClassSchedulerController@active')->name('class-schedule.active');
 
     Route::resource('study-schedule','StudyScheduleController')->except(['create']);
+    // Delete subject from editing table
+    Route::get('study-schedule/delete/{id}','StudyScheduleController@delete')->name('study-schedule.delete');
 
     /* passing class id in create method */
     Route::get('study-schedule/create/{id}','StudyScheduleController@create')->name('study-schedule.create');
+
+    Route::resource('student-register', 'StudentRegisterController');
+
+    Route::resource('student-table', 'StudentsTableController');
+
 
 }); // End of Dashboard Routes
 

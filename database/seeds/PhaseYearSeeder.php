@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Group;
 use Illuminate\Database\Seeder;
 
 class PhaseYearSeeder extends Seeder
@@ -16,10 +17,15 @@ class PhaseYearSeeder extends Seeder
         ]);
 
         // Append Years to this Phase
-        $phase->PhaseYear()->SaveMany([
+        $phaseYears =   $phase->PhaseYear()->SaveMany([
            new \App\models\PhaseYear(['yearsCount'=> 1]),
            new \App\models\PhaseYear(['yearsCount'=> 2]),
            new \App\models\PhaseYear(['yearsCount'=> 3])
         ]);
+
+        foreach ($phaseYears as $phaseYear)
+        {
+            $phaseYear->Groups()->save(new Group(['name' =>'A' . $phaseYear->yearsCount, 'student_counter' => 30]));
+        }
     }
 }

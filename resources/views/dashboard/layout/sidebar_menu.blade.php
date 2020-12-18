@@ -13,10 +13,16 @@
             </ul>
         </li>
         {{-- Roles & permission--}}
-        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> All Roles & Permissions  <span class="fa arrow"></span></a>
+        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Roles  <span class="fa arrow"></span></a>
             <ul class="nav nav-third-level">
                 <li> <a href="{{route('admin.roles.create')}}">Add new Role </a> </li>
                 <li> <a href="{{route('admin.roles.index')}}">View All Roles </a> </li>
+
+            </ul>
+        </li>
+        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Permissions  <span class="fa arrow"></span></a>
+            <ul class="nav nav-third-level">
+                <li> <a href="{{route('admin.permission.create')}}">Assign Permissions to role </a> </li>
 
             </ul>
         </li>
@@ -34,8 +40,12 @@
                 <li> <a href="{{route('admin.studyPhase.create')}}">Add Phase</a></li>
             </ul>
         </li>
-
-
+        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Groups <span class="fa arrow"></span></a>
+            <ul class="nav nav-third-level">
+                <li> <a href="{{route('admin.group.index')}}">Show All Groups</a> </li>
+                <li> <a href="{{route('admin.group.create')}}">Add Group</a></li>
+            </ul>
+        </li>
     </ul>
 </li>
 {{--End settings--}}
@@ -59,7 +69,8 @@
     <ul class="nav nav-second-level">
         <li> <a href="{{route('admin.student.index')}}">All Students</a> </li>
         <li> <a href="{{route('admin.student.create')}}">Add Student</a> </li>
-
+        <li> <a href="{{route('admin.student-register.create')}}">Register exits Student</a> </li>
+        <li> <a href="{{route('admin.student-table.index')}}">Student control table</a> </li>
     </ul>
 </li>
 
@@ -69,6 +80,14 @@
         <li> <a href="{{route('admin.subject.create')}}">Add Course</a> </li>
     </ul>
 </li>
+
+<li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-pencil"></i> <span class="hide-menu"> Subjects Groups <span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+        <li> <a href="{{route('admin.subject-mini-group.index')}}">All Subject Groups</a> </li>
+        <li> <a href="{{route('admin.subject-mini-group.create')}}">Add Groups</a> </li>
+    </ul>
+</li>
+
 <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-folder"></i> <span class="hide-menu"> Health Report<span class="fa arrow"></span></span></a>
     <ul class="nav nav-second-level">
         <li> <a href="{{route('admin.health-report.index')}}">All Health Report</a> </li>
@@ -82,7 +101,6 @@
     </ul>
 </li>
 
-
 <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-table"></i> <span class="hide-menu"> Classes Scheduler <span class="fa arrow"></span></span></a>
     <ul class="nav nav-second-level">
         <li> <a href="{{route('admin.class-schedule.index')}}">Show all Classes Scheduler</a> </li>
@@ -92,21 +110,9 @@
 
 <li><a href="{{route('logout')}}"
        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
-
+  document.getElementById('logout-form').submit();"
     ><i class="fa fa-power-off"></i> Logout</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
-</li><li class="hide-menu">
-    <a href="javacript:void(0);">
-        <span>Progress Report</span>
-        <div class="progress">
-            <div class="progress-bar progress-bar-info" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%" role="progressbar"> <span class="sr-only">85% Complete (success)</span> </div>
-        </div>
-        <span>Student Report</span>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%" role="progressbar"> <span class="sr-only">85% Complete (success)</span> </div>
-        </div>
-    </a>
-</li>
+

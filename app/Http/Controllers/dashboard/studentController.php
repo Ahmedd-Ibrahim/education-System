@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\models\Classes;
+use App\models\Group;
 use App\models\Phase;
 use App\models\PhaseYear;
 use App\models\Student;
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Validator;
 
 class studentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:store student|edit student|update student|delete student']);
+    }
+
     public function index()
     {
         $students = Student::paginate(40);
@@ -33,11 +40,15 @@ class studentController extends Controller
                 $years = $phase->PhaseYear;
                 return $years;
             }
-
             if ($request->has('className'))
             {
                 $phaseYear = PhaseYear::findOrFail($request->className);
                 return $phaseYear->Classes;
+            }
+            if($request->has('yearGroup'))
+            {
+                $year = PhaseYear::findOrFail($request->yearGroup);
+                return $year->Groups;
             }
 
         }
@@ -47,7 +58,6 @@ class studentController extends Controller
     public function store(Request $request)
     {
         try{
-
             $validator = Validator::make($request->all(),
                 [
                     'name'   => 'required| max:100 | min:3',
@@ -56,36 +66,39 @@ class studentController extends Controller
                     'avatar' => 'mimes:jpeg,png,jpg',
                     'phone' => 'required',
                     'address' => 'required',
-                    'class_id' => 'required'
+                    'class_id' => 'required',
+                    'group_id' => 'required'
                 ]
             );
-            if($validator->fails()){
+
+            if($validator->fails())
+            {
                 return redirect()->route('admin.student.create')->with('error','Please check Form information');
             }
-
             $class = Classes::findOrFail($request->class_id);
             $request->hasFile('avatar') ?  $path  = UploadImage('students',$request->avatar) : $path = '';
             $data = $request->except(['_token','avatar','phase','phaseYear']);
             $data['avatar'] = $path;
             $record = new Student($data);
             $student =    $class->Students()->save($record);
-            if(isset($request->subjects)){
-                $student->Subjects()->attach($request->subjects);
+            if(isset($request->subject_mini_group_id)){
+                $array =  $request->subject_mini_group_id;
+                $filter = array_filter($array);
+                $student->SubjectMiniGroups()->attach($filter);
             }
 
             return redirect()->route('admin.student.index')->with('success','Your Request Recorded');
         } catch (\ Exception $ex){
-           return $ex->getMessage();
-//            return redirect()->route('admin.student.create')->with('error','Please check Form information');
+            return $ex->getMessage();
+            return redirect()->route('admin.student.create')->with('error','Unexpected error Please check Form information');
         }
 
     } // End of store
 
     public function show(Student $student)
     {
-
         return view('dashboard.student.show',compact('student'));
-    }
+    } // end of show
 
     public function edit(Student $student)
     {
@@ -93,7 +106,7 @@ class studentController extends Controller
         $year =  $class->PhaseYear; // Student year
         $ownPhase =  $year->Phase;   // Student Education Phase
         $subjects = Subject::all();
-        $ownSubjects = $student->Subjects;
+        $ownSubjects = $student->SubjectMiniGroups;
         /* Get student Subjects id in array*/
         $ownSubjectsIds = [];
         foreach ($ownSubjects as $ownSubject){
@@ -101,7 +114,7 @@ class studentController extends Controller
         }
         $phases = Phase::paginate(40);
         return view('dashboard.student.edit',compact('student','phases','class','year','ownPhase','subjects','ownSubjectsIds'));
-    }
+    } // end of edit
 
     public function update(Request $request,  $id )
     {
@@ -125,8 +138,10 @@ class studentController extends Controller
             $data = $request->except(['_token','avatar','phaseYear','phase','subjects']);
             $data['avatar'] = $path;
             $student->update($data);
-            if ($request->subjects){
-                $student->Subjects()->sync($request->subjects);
+            if ($request->subject_mini_group_id){
+                $array =  $request->subject_mini_group_id;
+                $filter = array_filter($array);
+                $student->SubjectMiniGroups()->sync($filter);
             }
             return redirect()->route('admin.student.index')->with('success','Your Request Updated');
         } catch (\ Exception $ex){

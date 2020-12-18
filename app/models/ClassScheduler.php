@@ -3,24 +3,36 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ClassScheduler extends Model
 {
-    //
 
-    protected $table = 'class_scheduler';
-    protected $fillable = ['name'];
+    protected $table = 'Phase_scheduler';
+    protected $fillable = ['name','active'];
 
 
-    /* Begin Relation */
-    public function Days(){
-        return $this->hasMany(Day::class,'class_scheduler_id');
+    public function getActiveAttribute($key): string
+    {
+
+        if(isset($key) & $key == 'true')
+        {
+            return 'active';
+        } else{
+            return 'not Active';
+        }
     }
 
-
-    public function class()
+    /* Begin Relation */
+    public function Days(): HasMany
     {
-        return $this->belongsTo(Classes::class,'class_id');
+        return $this->hasMany(Day::class,'phase_scheduler_id');
+    }
+
+    public function Phase(): BelongsTo
+    {
+        return $this->belongsTo(Phase::class,'phase_id');
     }
 
     /* End  Relation */

@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class basicsInfoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['permission:store settings|edit settings|update settings|delete settings']);
+    }
+
     public function index()
     {
         $baseInfo = BasicsInfo::paginate(10);

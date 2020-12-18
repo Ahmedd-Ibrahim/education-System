@@ -3,19 +3,18 @@ namespace App\Http\Controllers\dashboard\roles;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
-use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Laratrust\Traits\LaratrustUserTrait;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(['role:super_admin']);
+
     }
     public function index()
     {
@@ -46,10 +45,11 @@ class RolesController extends Controller
             'display_name' => $request->name,
             'description' => $request->description
         ]);
-     return redirect()->route('admin.roles.index')->with('success','The role Added Successflly');
+     return redirect()->route('admin.roles.index')->with('success','The role Added Successfully');
     }
 
-    public function destroy(){
+    public function destroy()
+    {
 
     }
 }

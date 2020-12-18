@@ -15,11 +15,19 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
                                 <div class="col-md-12">
-                                    <h4>Add this Record From Scratch</h4>
+                                    <h4>Education Phase</h4>
                                     <form action="{{route('admin.studyPhase.store')}}" class="form-horizontal form-bordered" method="POST">
                                         @csrf
                                         <div class="form-body">
-                                            <p class="text-danger">Be Carefull when You add years, if You want Remove exists Data And Add from Scratch this is the correct form, If you wanna Append years to Your Education Chosse Another form</p>
+                                            <p class="text-danger">
+                                                Each Year You Will append will contain one Group at lest & You Can update Group name or append new Group Later!
+                                            </p>
+                                            <p class="text-danger">
+                                                Each Group will contain Year Number In His Name
+                                            </p>
+                                            <p class="text-danger">
+                                                Each Group will Limit with 30 Student You can change this Number later..
+                                            </p>
                                             <div class="form-group">
                                                 <label class="col-md-12">Phase Name</label>
                                                 <div class="col-md-12">

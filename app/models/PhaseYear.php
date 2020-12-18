@@ -10,14 +10,27 @@ class PhaseYear extends Model
     protected $table = 'phase_years';
 
     protected $fillable = ['yearsCount','phase'];
-    public $timestamps = false;
+
+
     /* Begin Relations*/
-    public function Phase(){
+    public function Phase()
+    {
         return $this->belongsTo(Phase::class,'phase','id');
     }
 
-    public function Classes(){
+    public function Classes()
+    {
         return $this->hasMany(Classes::class,'phaseYear','id');
+    }
+
+    public function Groups()
+    {
+        return $this->hasMany(Group::class,'phase_year_id');
+    }
+
+    public function SubjectScheduler()
+    {
+        return $this->hasMany(SubjectScheduler::class,'year_id');
     }
     /* End  Relations*/
 

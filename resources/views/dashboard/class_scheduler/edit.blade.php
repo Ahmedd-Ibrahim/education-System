@@ -22,27 +22,7 @@
                                     @error('title')
                                     <div class="alert alert-danger">    {{$message}} </div>
                                     @enderror
-
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Which Class this Scheduler belong?</label>
-                                    <div class="col-md-9">
-                                        <select  name="class_id" class="custom-select my-1 mr-sm-2" id="phase" style="width: 100%">
-                                            <option value="">Choose</option>
-                                            @if(isset($classes) && count($classes) > 0)
-                                                @foreach($classes as $class)
-                                                    <option @if($scheduler->class_id == $class->id) selected @endif value="{{$class->id}}">{{$class->name}}</option>
-                                                @endforeach
-                                            @endif
-
-
-                                        </select>
-
-                                    </div>
-                                    @error('student_id')
-                                    <div class="alert alert-danger">  {{$message}} </div>
-                                    @enderror
-
                                     <div class="form-actions">
                                         <div class="row">
                                             <div class="col-md-12">

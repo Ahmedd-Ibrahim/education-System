@@ -26,6 +26,7 @@
                                         <ul class="el-info">
                                             <li><a class="btn default btn-outline image-popup-vertical-fit" href="{{$student->getAvatarPath()}}"><i class="icon-magnifier"></i></a></li>
                                             <li><a class="btn default btn-outline" href="{{route('admin.student.edit',$student->id)}}"><i class="icon-link"></i></a></li>
+                                            <li><a class="btn default btn-outline" href="{{route('admin.student-register.edit',$student->id)}}"><i class="fa fa-table"></i></a></li>
                                             <li><a class="btn default btn-outline" href="{{route('admin.student.show',$student->id)}}"><i class="icon-user"></i></a></li>
                                             <li>
                                                 <form action="{{route('admin.student.destroy',$student->id)}}" method="POST" class="" id="delete">

@@ -17,7 +17,7 @@ class CreatePhaseYearsTable extends Migration
             $table->increments('id');
             $table->integer('yearsCount');
             $table->integer('phase')->unsigned();
-
+            $table->timestamps();
         });
 
         Schema::table('phase_years', function (Blueprint $table) {

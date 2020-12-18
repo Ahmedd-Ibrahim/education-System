@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class FoodCycleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['permission:store food|edit food|update food|delete food']);
+    }
+
     public function index()
     {
         $foodCycles = FoodCycle::paginate(50);
@@ -31,11 +36,12 @@ class FoodCycleController extends Controller
         $vaildation = Validator::make($request->all(),
         [
            'title' => 'required',
-           'image' => 'required',
+           'image' => 'mimes:jpeg,png,jpg',
            'student_id' => 'required',
         ]);
+
         if ($vaildation->fails()){
-            return redirect()->back()->with('error','Something wrong');
+            return redirect()->back()->with('error','Something wrong from vaildation');
         }
         $student = Student::findOrFail($request->student_id);
         $request->hasFile('image') ?  $path  = UploadImage('food_cycle',$request->image) : $path = '';

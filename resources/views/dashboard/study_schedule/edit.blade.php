@@ -1,117 +1,420 @@
 @extends('dashboard.layout.main')
 @section('content')
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">{{$day->name}}  table</h4> </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li class="active">{{$day->name}}</li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 
+    <form action="{{route('admin.study-schedule.update',$day->id)}}" method="post" id="study-form">
+        @csrf
+        @method('PATCH')
+        <input type="text" name="scheduler_id" value="{{$day->id}}" hidden>
+        <div>
+            <label class="my-1 mr-2" for="day">Choose Day for this subjects <strong class="text-danger">*</strong></label>
+            <select  name="name" class="custom-select my-1 mr-sm-2" id="day" style="width: 100%">
+                <option  value="{{$day->name}}">{{$day->name}}</option>
+            </select>
+            @error('name')
+            <div class="alert alert-danger">  {{$message}} </div>
+            @enderror
+            <br>
+        </div>
 
-    <!--.row-->
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-12">
-            <div class="panel panel-info">
-                <div class="panel-heading"> Academic  Phases System <a href="{{route('admin.studyPhase.index')}}" class="btn btn-success">Show Table</a></div>
+        <div class="form-content">
+            @if($day->SubjectSchedulers)
+                @foreach($day->SubjectSchedulers as $index => $SubjectScheduler)
 
+                    <div class="new-subject">
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> Number {{$index}}
+                                <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a>
+
+{{--data-perform="panel-dismiss"--}}
+
+                                        <a href="{{route('admin.study-schedule.delete',$SubjectScheduler->id)}}" style="background: border-box; border: 0;" ><i class="ti-close"></i></a>
+
+                                </div>
+                            </div>
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+                                <div class="panel-body">
+{{--                                     id for  SubjectScheduler data--}}
+                                    <input type="text" name="saturday[{{$index}}][id]" value="{{$SubjectScheduler->id}}" hidden>
+                                    <div>
+
+                                        <label class="my-1 mr-2" for="subject">Choose Subject <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][subject_id]" class="custom-select my-1 mr-sm-2 subject test" id="subject" style="width: 100%">
+                                            <option value="">Choose</option>
+                                            @foreach($subjects as $subject)
+                                                <option
+                                                    @if($subject->id == $SubjectScheduler->Subject->id)
+                                                    selected
+                                                    @endif
+                                                    value="{{$subject->id }}">
+                                                    {{$subject->name}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                        @error('subject')
+                                        <div class="alert alert-danger">    {{$message}} </div>
+                                        @enderror
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label class="my-1 mr-2" for="subjectGroup">Choose Subject Group <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][subject_mini_group_id]" class="custom-select my-1 mr-sm-2 subjectGroup" id="subjectGroup" style="width: 100%">
+                                            @foreach($SubjectScheduler->Subject->SubjectMiniGroup as $miniGroup)
+                                                <option
+                                                    @if($miniGroup->id == $SubjectScheduler->SubjectMiniGroup->id)
+                                                    selected
+                                                    @endif
+                                                    value="{{$miniGroup->id}}">
+                                                    {{$miniGroup->name}}
+                                                </option>
+
+                                            @endforeach
+                                        </select>
+                                        @error('subject')
+                                        <div class="alert alert-danger">    {{$message}} </div>
+                                        @enderror
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label class="my-1 mr-2" for="year">Which Year? <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][year_id]" class="custom-select my-1 mr-sm-2 year" id="year" style="width: 100%">
+                                            @foreach($years as $year)
+                                                <option  @if( $year->id == $SubjectScheduler->Year->id )
+                                                         SELECTED
+                                                         @endif
+                                                         value="{{$year->id}}">
+                                                    {{$year->yearsCount}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                        @error('year')
+                                        <div class="alert alert-danger">{{$message}} </div>
+                                        @enderror
+                                        <br>
+                                    </div>
+                                    <div>
+                                        <label class="my-1 mr-2" for="group">Which Group in the Year? <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][group_id]" class="custom-select my-1 mr-sm-2 test" id="group" style="width: 100%">
+
+                                            <option value="{{$SubjectScheduler->Group->id}}">
+                                                {{$SubjectScheduler->Group->name}}
+                                            </option>
+                                        </select>
+                                        @error('saturday[0][group_id]')
+                                        <div class="alert alert-danger">    {{$message}} </div>
+                                        @enderror
+                                        <br>
+                                    </div>
+
+                                    <div>
+                                        <label class="my-1 mr-2" for="phase">Choose Teacher <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][teacher_id]" class="custom-select my-1 mr-sm-2" id="teacher" style="width: 100%">
+                                            <option value="">Choose</option>
+                                            @if(isset($teachers) && count($teachers) > 0)
+                                                @foreach($teachers as $teacher)
+                                                    <option
+                                                        @if($teacher->id == $SubjectScheduler->Teacher->id)
+                                                        selected
+                                                        @endif
+                                                        value="{{$teacher->id}}">
+                                                        {{$teacher->name}}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        @error('teacher')
+                                        <div class="alert alert-danger">    {{$message}} </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="my-1 mr-2" for="class">Choose Class <strong class="text-danger">*</strong></label>
+                                        <select  name="saturday[{{$index}}][class_id]" class="custom-select my-1 mr-sm-2" id="class" style="width: 100%">
+                                            <option value="">Choose</option>
+                                            @if(isset($classes) && count($classes) > 0)
+                                                @foreach($classes as $class)
+                                                    <option
+                                                        @if($class->id == $SubjectScheduler->Class->id)
+                                                        selected
+                                                        @endif
+                                                        value="{{$class->id}}">
+                                                        {{$class->name}}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        @error('class')
+                                        <div class="alert alert-danger">    {{$message}} </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="example-time-input" class="col-2 col-form-label">Starting Time <strong class="text-danger">*</strong></label>
+
+                                        <input class="form-control" type="time" name="saturday[{{$index}}][start_at]" value="13:45:00" id="example-time-input">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-time-input" class="col-2 col-form-label">Ending Time <strong class="text-danger">*</strong></label>
+
+                                        <input class="form-control" type="time" name="saturday[{{$index}}][end_at]" value="13:45:00" id="example-time-input">
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="example-time-input" class="col-2 col-form-label">Description <small class="text-info">optional</small></label>
+                                        <input class="form-control" type="text" name="saturday[{{$index}}][desc]" placeholder="description for this subject!" id="example-time-input" value="{{$SubjectScheduler->desc}}">
+                                    </div>
+
+                                    <div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+                @endforeach
+            @endif
+        </div>
+
+        <div class="btn btn-success add-more-courses">Add more Courses in this day</div>
+        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Update</button>
+        <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+
+    </form>
+
+    {{--                End of Form --}}
+    </div>
+
+    <script>
+        {{--  Begin ajax for subject Group--}}
+        $(`#subject`).on("change",function() {
+            $("#subjectGroup").empty();
+            $.ajax({
+                url:`{{route('admin.study-schedule.edit',$day->id)}}`,
+                method:"GET",
+                dataType: 'json',
+                data:{
+                    name: $(this).val(),
+                },
+                success: function (data){
+                    console.log(data);
+                    $.each(data, function (key, value)
+                    {
+                        $("#subjectGroup").append(`<option value="${value.id}">${value.name}</option>`)
+                    });
+
+                }
+            }); // End of Ajax
+
+        });
+
+        {{--  End  ajax for subject Group--}}
+
+        {{--  Begin ajax for main year Group--}}
+
+        $(`#year`).on("change",function() {
+            $("#group").empty();
+            $.ajax({
+                url:`{{route('admin.study-schedule.edit',$day->id)}}`,
+                method:"GET",
+                dataType: 'json',
+                data:{
+                    year: $(this).val(),
+                },
+                success: function (data){
+                    console.log(data);
+                    $.each(data, function (key, value)
+                    {
+                        $("#group").append(`<option value="${value.id}">${value.name}</option>`)
+                    });
+                }
+            }); // End of Ajax
+        });
+        {{--  End  ajax for main year Group--}}
+
+        /* Append mini Groups to Subject*/
+
+        function calc()
+        {
+            window.z = {{isset($index) ? $index : 0}};
+            $('.add-more-courses').on('click',function (e){
+                e.preventDefault();
+                z++;
+
+                console.log(z);
+                let html =
+                    `
+                <div class="new-subject">
+
+                 <div class="panel panel-info">
+                            <div class="panel-heading"> Number ${z}
+                    <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a> </div>
+                </div>
                 <div class="panel-wrapper collapse in" aria-expanded="true">
                     <div class="panel-body">
 
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">
-                                <div class="col-md-12">
-                                    <h4>Add this Record From Scratch</h4>
-                                    <form style="margin-bottom: 50px" action="{{route('admin.studyPhase.update',$phase)}}" class="form-horizontal form-bordered" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <div class="form-body">
-                                            <p class="text-danger">Be Carefull when You add years, if You want Remove exists Data And Add from Scratch this is the correct form, If you wanna Append years to Your Education Chosse Another form</p>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Phase Name</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="name" placeholder="Phase Name" value="{{$phase->name}}">
-                                                </div>
-                                            </div>
-                                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">How many Academic year in This Phase? </label>
-                                            <select disabled class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width: 100%">
-                                                <option @if(count($phase->PhaseYear) == 1) Selected @endif value="1">One</option>
-                                                <option @if(count($phase->PhaseYear) == 2) Selected @endif value="1,2">Two</option>
-                                                <option @if(count($phase->PhaseYear) == 3) Selected @endif value="1,2,3">Three</option>
-                                                <option @if(count($phase->PhaseYear) == 4) Selected @endif value="1,2,3,4">Four</option>
-                                                <option @if(count($phase->PhaseYear) == 5) Selected @endif value="1,2,3,4,5">Five</option>
-                                                <option @if(count($phase->PhaseYear) == 6) Selected @endif value="1,2,3,4,5,6">Six</option>
-                                            </select>
-                                            @error('counter')
-                                            <div class="alert alert-danger">    {{$message}} </div>
-                                            @enderror
-                                        </div>
-                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">APPEND NEW YEARS TO THIS Phase? </label>
-                                        <select  name="yearsCount" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width: 100%">
-                                            <option   selected value="">choose..</option>
-                                            <option value="1">One</option>
-                                            <option value="1,2">Two</option>
-                                            <option value="1,2,3">Three</option>
-                                            <option value="1,2,3,4">Four</option>
-                                            <option value="1,2,3,4,5">Five</option>
-                                            <option value="1,2,3,4,5,6">Six</option>
-                                        </select>
 
-                                        <div class="form-actions">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-offset-3 col-md-9">
-                                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Update </button>
-                                                            <a href="{{route('home')}}" type="button" class="btn btn-default">Cancel</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="clearfix"></div>
-                                {{--                                        End of add Form--}}
-                                <h3>Delete Year OF this PHASE ?</h3>
-                                <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th data-toggle="true">Academic year</th>
-                                        <th> Phase Name </th>
-
-                                        <th data-hide="all"> Action </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @isset($phase->PhaseYear)
-                                        @foreach($phase->PhaseYear as $year)
-                                            <tr>
-                                                <th> {{$year->yearsCount}}  </th>
-                                                <th> {{$phase->name}}   </th>
-                                                <th>
-                                                    <form class="d-inline-block" action="{{route('admin.phase.delete',$year->id)}}" METHOD="POST">
-                                                        @csrf
-                                                        @method("DELETE")
-                                                        <button type="submit" class="btn btn-danger d-inline-block" >Delete <i class="fa fa-trash"></i></button>
-                                                    </form>
-                                                </th>
-                                            </tr>
+                    <label class="my-1 mr-2" for="phase">Choose Subject <strong class="text-danger">*</strong></label>
+                    <select  name="saturday[${z}][subject_id]" class="custom-select my-1 mr-sm-2 subject test" id="subject" style="width: 100%">
+                                    <option value="">Choose</option>
+                                    @if(isset($subjects) && count($subjects) > 0)
+                    @foreach($subjects as $subject)
+                    <option value="{{$subject->id}}">{{$subject->name}}</option>
                                         @endforeach
-                                    @endisset
-                                    </tbody>
-                                    <thead>
-                                    <tr>
-                                        <th data-toggle="true">Academic year</th>
-                                        <th> Phase Name </th>
-                                        <th data-hide="all"> Action </th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                    @endif
+                    </select>
+@error('subject')
+                    <div class="alert alert-danger">    {{$message}} </div>
+                                @enderror
+                    <br>
 
-                        </div>
-
-                    </div>
+            <div>
+                    <label class="my-1 mr-2" for="subjectGroup">Choose Subject Group <strong class="text-danger">*</strong></label>
+                    <select  name="saturday[${z}][subject_mini_group_id]" class="custom-select my-1 mr-sm-2" id="subjectGroup" style="width: 100%">
+                                    <option value="">Choose</option>
+                                </select>
+                    <br>
                 </div>
 
-            </div>
-        </div>
-    </div>
-    <!--./row-->
+
+
+                           <div>
+                            <label class="my-1 mr-2" for="year">Which Year? <strong class="text-danger">*</strong></label>
+                            <select  name="saturday[${z}][year_id]" class="custom-select my-1 mr-sm-2 test" id="year" style="width: 100%">
+                                <option value="">Choose</option>
+                                @if(isset($years) && count($years) > 0)
+                    @foreach($years as $year)
+                    <option value="{{$year->id}}">{{$year->yearsCount}}</option>
+                                    @endforeach
+                    @endif
+                    </select>
+@error('year')
+                    <div class="alert alert-danger">    {{$message}} </div>
+                            @enderror
+                    <br>
+                </div>
+                <div>
+                    <label class="my-1 mr-2" for="group">Which Group in the Year? <strong class="text-danger">*</strong></label>
+                    <select  name="saturday[${z}][group_id]" class="custom-select my-1 mr-sm-2 test" id="group" style="width: 100%">
+                         <option value="">Choose</option>
+                     </select>
+
+<div>
+<label class="my-1 mr-2" for="phase">Choose Teacher <strong class="text-danger">*</strong></label>
+<select  name="saturday[${z}][teacher_id]" class="custom-select my-1 mr-sm-2" id="teacher" style="width: 100%">
+                       <option value="">Choose</option>
+@if(isset($teachers) && count($teachers) > 0)
+                    @foreach($teachers as $teacher)
+                    <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                          @endforeach
+                    @endif
+                    </select>
+                    </div>
+                           <div>
+                               <label class="my-1 mr-2" for="class">Choose Class <strong class="text-danger">*</strong></label>
+                               <select  name="saturday[${z}][class_id]" class="custom-select my-1 mr-sm-2" id="class" style="width: 100%">
+                                    <option value="">Choose</option>
+                                    @if(isset($classes) && count($classes) > 0)
+                    @foreach($classes as $class)
+                    <option value="{{$class->id}}">{{$class->name}}</option>
+                                        @endforeach
+                    @endif
+                    </select>
+@error('class')
+                    <div class="alert alert-danger">    {{$message}} </div>
+                                @enderror
+                    </div>
+                   <div class="form-group row">
+                       <label for="example-time-input" class="col-2 col-form-label">Starting Time <strong class="text-danger">*</strong></label>
+
+                           <input class="form-control" type="time" name="saturday[${z}][start_at]" value="13:45:00" id="example-time-input">
+                          </div>
+                           <div class="form-group row">
+                              <label for="example-time-input" class="col-2 col-form-label">Ending Time <strong class="text-danger">*</strong></label>
+
+                                  <input class="form-control" type="time" name="saturday[${z}][end_at]" value="13:45:00" id="example-time-input">
+                          </div>
+
+                          <div class="form-group row">
+                              <label for="example-time-input" class="col-2 col-form-label">Description <small class="text-info">optional</small></label>
+                                  <input class="form-control" type="text" name="saturday[${z}][desc]" placeholder="description for this subject!" id="example-time-input">
+                          </div>
+
+                          <div>
+                          </div>
+                          <hr>
+
+                           </div>
+                            </div>
+                        </div>
+
+                        `;
+
+                $('.form-content').append(html);
+                console.log('success' + z);
+                /* Begin Subject Groups */
+                $(`.subject`).change(function() {
+                    $(`select[name="saturday[${z}][subject_mini_group_id]"]`).empty();
+                    $.ajax({
+                        url:`{{route('admin.study-schedule.edit',$day->id)}}`,
+                        method:"GET",
+                        dataType: 'json',
+                        data:{
+                            name: $(this).val(),
+                        },
+                        success: function (data){
+                            console.log(data);
+                            $.each(data, function (key, value)
+                            {
+                                $(`select[name="saturday[${z}][subject_mini_group_id]"]`).append(`<option value="${value.id}">${value.name}</option>`)
+                            });
+
+                        }
+                    }); // End of ajax
+
+                });
+                /* End Subject Group */
+
+
+                /* Begin Main Groups*/
+                $(`select[name="saturday[${z}][year_id]"]`).on("change",function() {
+                    $(`select[name="saturday[${z}][group_id]"]`).empty();
+                    $.ajax({
+                        url:`{{route('admin.study-schedule.edit',$day->id)}}`,
+                        method:"GET",
+                        dataType: 'json',
+                        data:{
+                            year: $(this).val(),
+                        },
+                        success: function (data){
+                            console.log(data);
+                            $.each(data, function (key, value)
+                            {
+                                $(`select[name="saturday[${z}][group_id]"]`).append(`<option value="${value.id}">${value.name}</option>`)
+                            });
+                        }
+                    }); // End of Ajax
+
+                });
+                /* End  Main Groups*/
+
+            }); // end of append
+        } // End of calc
+
+        calc();
+    </script>
 @endsection

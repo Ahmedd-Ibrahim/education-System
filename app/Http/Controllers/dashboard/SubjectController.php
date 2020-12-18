@@ -5,11 +5,17 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubjectRequest;
 use App\models\Subject;
+use App\models\SubjectMiniGroup;
 use App\models\Teacher;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:store subject|edit subject|update subject|delete subject']);
+    }
 
     public function index()
     {
@@ -26,8 +32,15 @@ class SubjectController extends Controller
     public function store(SubjectRequest $request)
     {
 
-        Subject::create($request->all());
+
+        $subject = Subject::create($request->all());
+
+        $group = new SubjectMiniGroup(['name' => $request->group]);
+
+        $subject->SubjectMiniGroup()->save($group);
+
         return redirect()->route('admin.subject.index')->with('success','Your Subject Added');
+
     } // End of store
 
 

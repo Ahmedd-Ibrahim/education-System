@@ -32,14 +32,28 @@
                                 </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Which Student has this Report</label>
+
                                         <div class="col-md-9">
                                             <select  name="student_id" class="custom-select my-1 mr-sm-2" id="phase" style="width: 100%">
-                                                <option value="">Choose</option>
-                                                @if(isset($students) && count($students) > 0)
+
+                                                @if(request('student'))
+
+                                                    <option selected  hidden
+                                                            value="{{\App\models\Student::where('id',request('student'))->pluck('id')->first()}}">
+                                                        {{\App\models\Student::where('id',request('student'))->pluck('name')->first()}}
+                                                    </option>
+
+                                                @else
+                                                @isset($students)
+                                                        <option value="">Choose</option>
                                                     @foreach($students as $student)
-                                                        <option value="{{$student->id}}">{{$student->name . " => class name:" .
-                                                     $student->Class->name . " => Date of Birth: " . $student->bdate }}</option>
+                                                            <option
+                                                                value="{{$student->id}}">{{$student->name . " => class name:" .
+                                                     $student->Class->name . " => Date of Birth: " . $student->bdate }}
+                                                            </option>
+
                                                     @endforeach
+                                                    @endisset
                                                 @endif
 
 

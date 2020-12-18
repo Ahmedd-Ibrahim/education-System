@@ -105,21 +105,29 @@
                     @enderror
 
 
-
-                    <div class="col-sm-4 form-group">
-                        <h3>Courses </h3>
+                    <h3>Courses </h3>
+                    <p class="text-danger">
+                        If You didn't Choose Group This Student will not Join to the subject until you append it later
+                    </p>
+                    <div class="row">
                         @if(isset($subjects) && count($subjects) > 0)
-                            @foreach($subjects as $subject)
-                                <div class="form-check has-success">
-                                    <label class="form-check-label">
-                                        <input name="subjects[]" type="checkbox" class="form-check-input" id="subjects" value="{{$subject->id}}"
-                                               @if(in_array($subject->id,$ownSubjectsIds)) CHECKED @endif>
-                                        {{$subject->name}}
-                                    </label>
+                            @foreach($subjects as $index => $subject)
+                                <div class="col-md-4">
+                                    <label class="my-1 mr-2" for="phaseYear">{{$subject->name}} </label>
+                                    <select name="subject_mini_group_id[]" class="custom-select my-1 mr-sm-2" id="phaseYear" style="width: 100%">
+                                        <option value selected  >choose</option>
+                                        @if(isset($subject->SubjectMiniGroup))
+                                            @foreach($subject->SubjectMiniGroup as  $group)
+                                                <option @if(in_array($group->id,$ownSubjectsIds) ) selected @endif value="@if($group->id) {{$group->id}}@else 0 @endif">{{$group->name}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                             @endforeach
                         @endif
                     </div>
+
+
 
                     <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Update</button>
                     <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>

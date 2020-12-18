@@ -1,6 +1,5 @@
 @extends('dashboard.layout.main')
 @section('content')
-
     <!--.row-->
     <div class="row" style="margin-top: 20px">
         <div class="col-md-12">
@@ -20,27 +19,23 @@
                                 @error('title')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
-
                                 </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Which Class this Scheduler belong?</label>
+                            <div class="form-group">
+                                        <label class="control-label col-md-3">Which Phase this Scheduler belong?</label>
                                         <div class="col-md-9">
-                                            <select  name="class_id" class="custom-select my-1 mr-sm-2" id="phase" style="width: 100%">
+                                            <select  name="phase" class="custom-select my-1 mr-sm-2" id="phase" style="width: 100%">
                                                 <option value="">Choose</option>
-                                                @if(isset($classes) && count($classes) > 0)
-                                                    @foreach($classes as $class)
-                                                        <option value="{{$class->id}}">{{$class->name}}</option>
+                                                @if(isset($phases) && count($phases) > 0)
+                                                    @foreach($phases as $phase)
+                                                        <option value="{{$phase->id}}">{{$phase->name}}</option>
                                                     @endforeach
                                                 @endif
-
-
                                             </select>
-
                                         </div>
-                                        @error('student_id')
+                                        @error('phase')
                                         <div class="alert alert-danger">  {{$message}} </div>
                                         @enderror
-
+                            </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -59,7 +54,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <!--./row-->
 @endsection

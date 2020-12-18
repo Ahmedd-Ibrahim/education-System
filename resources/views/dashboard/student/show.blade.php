@@ -88,11 +88,18 @@
                         No Description For this Student
                     @endif
                 </p>
-                <h4 class="m-t-30">Food Cycle Course</h4>
+                <h4 class="m-t-30">Food Cycle Course </h4>
+                <p class="small">  <a class="btn btn-primary" style="padding: 5px;font-size: 12px" href="{{url('/dashboard/food-cycle/create?student='.$student->id)}}">Add new Cycle Course</a></p>
                 <hr>
                 <ul>
-                    @if(isset($student->FoodCycle))
-                        <li style="padding-bottom: 20px; font-size: 17px"><a href="{{route('admin.food-cycle.show',$student->FoodCycle->id)}}">{{$student->FoodCycle->title}}</a></li>
+                    @if(isset($student->FoodCycles))
+                        @foreach($student->FoodCycles as $food)
+                            <li style="padding-bottom: 20px; font-size: 17px">
+                                <a href="{{route('admin.food-cycle.show',$food->id)}}">
+                                    {{$food->title}}
+                                </a></li>
+
+                        @endforeach
                     @else
                         <li>
                             No food Course
@@ -100,6 +107,12 @@
                     @endif
                 </ul>
                 <h4 class="m-t-30">Health Report</h4>
+                <p class="small">
+                    <a class="btn btn-primary" style="padding: 5px;font-size: 12px"
+                       href="{{url('/dashboard/health-report/create?student='.$student->id)}}">
+                        Add new Health Report
+                    </a></p>
+
                 <hr>
                 <ul>
                     @if(isset($student->HealthReports) && count($student->HealthReports) > 0)

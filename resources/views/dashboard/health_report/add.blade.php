@@ -58,12 +58,21 @@
                                         <div class="col-md-9">
 
                                             <select  name="student_id" class="custom-select my-1 mr-sm-2" id="phase" style="width: 100%">
-                                                <option value="">Choose</option>
-                                                @if(isset($students) && count($students) > 0)
+                                                @if(request('student'))
+
+                                                    <option selected  hidden
+                                                            value="{{\App\models\Student::where('id',request('student'))->pluck('id')->first()}}">
+                                                        {{\App\models\Student::where('id',request('student'))->pluck('name')->first()}}
+                                                    </option>
+                                                @else
+                                                    <option value="">Choose</option>
+                                                @isset($students)
+
                                                     @foreach($students as $student)
                                                         <option value="{{$student->id}}">{{$student->name . " => class name:" .
                                       $student->Class->name . " => Date of Birth: " . $student->bdate }}</option>
                                                     @endforeach
+                                                    @endisset
                                                 @endif
 
 

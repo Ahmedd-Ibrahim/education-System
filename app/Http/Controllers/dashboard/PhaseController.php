@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\models\Group;
 use App\models\Phase;
 use App\models\PhaseYear;
 use App\models\SchoolYear;
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PhaseController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:store config|edit config|update config|delete config']);
+    }
 
     public function index()
     {
@@ -28,22 +34,40 @@ class PhaseController extends Controller
 
     public function store(Request $request)
     {
-        $valid = Validator::make($request->all(),[
-           'name'=> 'required|unique:phases|max:255',
-           'yearsCount' => 'required'
-        ]);
-        if($valid->fails()){
-            return redirect()->back()->with('error','Fill All inputs');
-        }
+        try {
+            DB::beginTransaction();
 
-        $phase = Phase::create($request->except('yearsCount'));
-        $years =  explode(',', $request->yearsCount);
-        $records = [];
-        foreach ($years as $year){
-            $records [] = new PhaseYear(['yearsCount'=>$year]);
-        }
-        $phase->PhaseYear()->saveMany($records);
-      return redirect()->route('admin.studyPhase.index')->with('success','You have been Added Phase Successfully');
+            $valid = Validator::make($request->all(), [
+                'name' => 'required|unique:phases|max:255',
+                'yearsCount' => 'required'
+            ]);
+
+            if ($valid->fails()) {
+                return redirect()->back()->with('error', 'Fill All inputs');
+            }
+
+            $phase = Phase::create($request->except('yearsCount'));
+            $years = explode(',', $request->yearsCount);
+            $records = [];
+            foreach ($years as $year) {
+                $records [] = new PhaseYear(['yearsCount' => $year]);
+            }
+
+            $phaseYears = $phase->PhaseYear()->saveMany($records);
+
+            foreach ($phaseYears as $phaseYear)
+            {
+                $phaseYear->Groups()->save(new Group(['name' =>'A' . $phaseYear->yearsCount, 'student_counter' => 30]));
+            }
+            DB::commit();
+            return redirect()->route('admin.studyPhase.index')->with('success','You have been Added Phase Successfully');
+        }catch (\ Exception $ex)
+        {
+            DB::rollBack();
+            return redirect()->route('admin.studyPhase.index')->with('Error','Something Wrong');
+
+        } // End of catch
+
     } // End of store
 
     public function show(Phase $Phase)
@@ -75,7 +99,6 @@ class PhaseController extends Controller
                 $dbCurrentRecordsCount = $phase->PhaseYear->count(); // Counter from Db for this column
 
                 if($dbCurrentRecordsCount > 0){ // make counter over db number
-
                     $newRecords = [];
 
                     for($i= 1; $i <= $newRecordsCount; $i++){
@@ -86,8 +109,13 @@ class PhaseController extends Controller
                     {
                         $recordsPlus [] =new PhaseYear(['yearsCount'=>$record]);
                     }
-                    $phase->PhaseYear()->saveMany($recordsPlus);
+                 $newYears = $phase->PhaseYear()->saveMany($recordsPlus);
 
+                    foreach ($newYears as  $newYear)
+                    {
+                        $newYear->Groups()->save(new Group(['name' =>'A' . $newYear->yearsCount, 'student_counter' => 30]));
+
+                    }
                 } // End of if condition
             }// End of if condition
             $phase->update($request->except('yearsCount'));

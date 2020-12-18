@@ -6,7 +6,7 @@
     <div class="row" style="margin-top: 20px">
         <div class="col-md-12">
             <div class="panel panel-info">
-                <div class="panel-heading"> Academic  Phases System <a href="{{route('admin.studyPhase.index')}}" class="btn btn-success">Show Table</a></div>
+                <div class="panel-heading"> Academic  Phases System <a href="{{route('admin.group.index')}}" class="btn btn-success">Show Table</a></div>
 
                 <div class="panel-wrapper collapse in" aria-expanded="true">
                     <div class="panel-body">
@@ -16,7 +16,7 @@
                             <div role="tabpanel" class="tab-pane active" id="home">
                                 <div class="col-md-12">
                                     <h4>Add this Record From Scratch</h4>
-                                    <form style="margin-bottom: 50px" action="{{route('admin.studyPhase.update',$phase)}}" class="form-horizontal form-bordered" method="POST">
+                                    <form style="margin-bottom: 50px" action="{{route('admin.group.update',$phase)}}" class="form-horizontal form-bordered" method="POST">
                                         @csrf
                                         @method('PATCH')
                                         <div class="form-body">

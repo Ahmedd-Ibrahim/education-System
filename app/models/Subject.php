@@ -11,7 +11,8 @@ class Subject extends Model
 
 
 /*Begin Relations*/
-    public function Teachers(){
+    public function Teachers()
+    {
         return $this->hasMany(Teacher::class,'subject_id','id');
     }
 
@@ -23,6 +24,16 @@ class Subject extends Model
     public function SubjectSchedulers()
     {
         return $this->hasMany(SubjectScheduler::class,'subject_id');
+    }
+
+    public function Groups()
+    {
+        return $this->belongsToMany(Group::class,'group_subject');
+    }
+
+    public function SubjectMiniGroup()
+    {
+        return $this->hasMany(SubjectMiniGroup::class,'subject_id');
     }
 /*End Relations*/
 

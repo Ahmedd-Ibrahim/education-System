@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Validator;
 class teacherController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['permission:store prof|edit prof|update prof|delete prof']);
+    }
+
     public function index()
     {
-
-
         $teachers = Teacher::with('Subjects')->paginate(40);
         return view('dashboard.teacher.index',compact('teachers'));
-
     } // End of index
 
     public function create()

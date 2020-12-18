@@ -30,7 +30,19 @@
     <!-- color CSS -->
     <link href="{{asset('style/backend/custom/css/colors/blue.css')}}" id="theme" rel="stylesheet">
     <!-- Calendar CSS -->
+@yield('css')
+    <style>
+        #Students-table_filter{
+            display: inline-block;
+            float: right;
+        }
+        .btn-default, .btn-default.disabled{
+            background: inherit;
+            border: none;
 
+        }
+
+    </style>
 {{--    <link href="{{asset('style/backend/plugins/bower_components/calendar/dist/fullcalendar.min.css')}}" rel="stylesheet" />--}}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,9 +51,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-{{--    custom js--}}
-    <script src="{{asset('style/backend/custom/js/scheduler-form.js')}}"></script>
-{{--    /custom js--}}
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;

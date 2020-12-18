@@ -16,12 +16,13 @@ class CreateDayTable extends Migration
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('class_scheduler_id')->unsigned();
+            $table->integer('phase_scheduler_id')->unsigned();
             $table->timestamps();
         });
+
         Schema::table('days', function (Blueprint $table) {
-            $table->foreign('class_scheduler_id')
-                ->on('class_scheduler')
+            $table->foreign('phase_scheduler_id')
+                ->on('phase_scheduler')
                 ->references('id')
                 ->onUpdate('cascade');
         });
@@ -34,6 +35,6 @@ class CreateDayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('day');
+        Schema::dropIfExists('days');
     }
 }

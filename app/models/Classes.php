@@ -27,5 +27,9 @@ class Classes extends Model
     public function ClassSchedulers(){
         return $this->hasMany(ClassScheduler::class,'class_id');
     }
+
+    public function SubjectSchedulers(){
+        return $this->hasMany(SubjectScheduler::class,'class_id');
+    }
     /* End  Relations */
 }

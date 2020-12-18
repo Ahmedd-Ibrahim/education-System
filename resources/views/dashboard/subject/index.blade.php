@@ -3,7 +3,8 @@
 
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Roles table</h4>
+                    <h4 class="page-title">Subject table</h4>
+                    <h5 class="page-title"><a class="btn-success btn" href="{{route('admin.subject.create')}}">Create New Subject</a></h5>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 

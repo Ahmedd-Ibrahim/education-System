@@ -32,15 +32,13 @@
 <script src="{{asset('style/backend/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
 {{-- Alerts on backend--}}
 
-{{--Calender--}}
-{{--<script src="{{asset('style/backend/plugins/bower_components/calendar/jquery-ui.min.js')}}"></script>--}}
-{{--<script src="{{asset('style/backend/plugins/bower_components/moment/moment.js')}}"></script>--}}
-{{--<script src='{{asset('style/backend/plugins/bower_components/calendar/dist/fullcalendar.min.js')}}'></script>--}}
-{{--<script src="{{asset('style/backend/plugins/bower_components/calendar/dist/cal-init.js')}}"></script>--}}
-{{-- / Calender--}}
 <!--Style Switcher -->
 @include('dashboard.layout.alerts.alert')
 {{--    End of alerts--}}
+
+
+@stack('scripts')
+
 
 
 </body>

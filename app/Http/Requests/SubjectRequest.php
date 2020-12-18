@@ -25,6 +25,7 @@ class SubjectRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
+            'group' => 'required|max:100',
             'desc' => 'max:200'
         ];
     }

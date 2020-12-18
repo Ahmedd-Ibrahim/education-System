@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ClassesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:store class|edit class|update class|delete class']);
+    }
+
     public function index()
     {
         $classes = Classes::paginate(40);

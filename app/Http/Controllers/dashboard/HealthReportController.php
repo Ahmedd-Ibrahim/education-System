@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 class HealthReportController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware(['permission:store health|edit health|update health|delete health']);
+    }
+
     public function index()
     {
         $health_reports = HealthReport::paginate(50);
