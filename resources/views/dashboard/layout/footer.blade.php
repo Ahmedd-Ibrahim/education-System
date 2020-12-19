@@ -29,17 +29,13 @@
 <script src="{{asset('style/backend/custom/js/dashboard1.js')}}"></script>
 <script src="{{asset('style/backend/custom/js/backend.js')}}"></script>
 <!--Style Switcher -->
-<script src="{{asset('style/backend/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>
+{{--<script src="{{asset('style/backend/plugins/bower_components/styleswitcher/jQuery.style.switcher.js')}}"></script>--}}
 {{-- Alerts on backend--}}
 
 <!--Style Switcher -->
 @include('dashboard.layout.alerts.alert')
 {{--    End of alerts--}}
-
-
 @stack('scripts')
-
-
 
 </body>
 </html>

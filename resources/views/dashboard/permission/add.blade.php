@@ -139,6 +139,34 @@
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#student" aria-expanded="false" aria-controls="student">
+                                                student
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="student" class="collapse" aria-labelledby="student" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                @if($students)
+                                                    @foreach($students as $student)
+                                                        <div class="col-md-3 col-sm-6">
+                                                            <div class="form-check form-control" style="border: none">
+                                                                <input name="permission[]" class="form-check-input form-check-input" type="checkbox" value="{{$student->name}}" id="defaultCheck1">
+                                                                <label class="form-check-label " for="defaultCheck1" style="margin: 2px;">
+                                                                    {{$student->name}}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#subject" aria-expanded="false" aria-controls="subject">
                                                 subject
                                             </button>

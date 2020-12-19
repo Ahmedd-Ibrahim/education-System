@@ -19,7 +19,7 @@ class studentController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store student|edit student|update student|delete student']);
+        $this->middleware(['permission:store student|edit student|update student|delete student|show student']);
     }
 
     public function index()

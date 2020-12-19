@@ -17,7 +17,7 @@ class PhaseController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store config|edit config|update config|delete config']);
+        $this->middleware(['permission:store config|edit config|update config|delete config|show config']);
     }
 
     public function index()

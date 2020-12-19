@@ -14,7 +14,7 @@ class basicsInfoController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store settings|edit settings|update settings|delete settings']);
+        $this->middleware(['permission:store settings|edit settings|update settings|delete settings|show settings']);
     }
 
     public function index()

@@ -21,7 +21,7 @@ class StudyScheduleController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store scheduler|edit scheduler|update scheduler|delete scheduler']);
+        $this->middleware(['permission:store scheduler|edit scheduler|update scheduler|delete scheduler|show scheduler']);
     }
 
     public function index()

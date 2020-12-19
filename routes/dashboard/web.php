@@ -30,7 +30,7 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
         Route::resource('permission', 'PermissionController')->only(['create','store']);
     });
     /* End roles & Permissions*/
-
+    Route::resource('users','UserController');
 
     Route::resource('siteSettings','settings\basicsInfoController')->except(['show','store','edit','destroy','create']); //  Site basics Info settings
 
@@ -68,8 +68,7 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     Route::resource('student-register', 'StudentRegisterController');
 
     Route::resource('student-table', 'StudentsTableController');
-
-
+    
 }); // End of Dashboard Routes
 
 

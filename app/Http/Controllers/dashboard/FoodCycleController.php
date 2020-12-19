@@ -14,7 +14,7 @@ class FoodCycleController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store food|edit food|update food|delete food']);
+        $this->middleware(['permission:store food|edit food|update food|delete food|show food']);
     }
 
     public function index()

@@ -15,7 +15,7 @@ class SubjectMiniGroupController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store subject|edit subject|update subject|delete subject']);
+        $this->middleware(['permission:store subject|edit subject|update subject|delete subject|show subject']);
     }
 
     public function index()

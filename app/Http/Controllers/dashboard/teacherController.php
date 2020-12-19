@@ -15,7 +15,7 @@ class teacherController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store prof|edit prof|update prof|delete prof']);
+        $this->middleware(['permission:store prof|edit prof|update prof|delete prof|show prof']);
     }
 
     public function index()

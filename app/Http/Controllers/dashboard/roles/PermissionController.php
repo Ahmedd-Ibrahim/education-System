@@ -37,9 +37,10 @@ class PermissionController extends Controller
         $healths    = Permission::where('name','like','%health%')->get();
         $foods      = Permission::where('name','like','%food%')->get();
         $schedulers = Permission::where('name','like','%scheduler%')->get();
+        $students = Permission::where('name','like','%student%')->get();
         $roles = Role::all();
         return view('dashboard.permission.add',compact('settings','configs','class','profs','student',
-        'subjects','healths','foods','schedulers','roles'));
+        'subjects','healths','foods','schedulers','students','roles'));
     }
 
     /**
@@ -54,7 +55,7 @@ class PermissionController extends Controller
 
         $role->syncPermissions($request->permission);
 
-        return redirect()->route('admin.home')->with('success','The permissions assigns to this role successfully');
+        return redirect()->route('home')->with('success','The permissions assigns to this role successfully');
     }
 
     public function show($id)

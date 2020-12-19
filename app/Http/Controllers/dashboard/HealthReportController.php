@@ -14,7 +14,7 @@ class HealthReportController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store health|edit health|update health|delete health']);
+        $this->middleware(['permission:store health|edit health|update health|delete health|show health']);
     }
 
     public function index()
