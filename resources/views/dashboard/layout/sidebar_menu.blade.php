@@ -118,11 +118,11 @@
     </ul>
 </li>
 @endcanany
-@canany(['show schedule','store schedule','edit schedule','update schedule'])
-<li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-table"></i> <span class="hide-menu"> Classes Scheduler <span class="fa arrow"></span></span></a>
+@canany(['show scheduler','store scheduler','edit scheduler','update scheduler'])
+<li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-table"></i> <span class="hide-menu">Scheduler <span class="fa arrow"></span></span></a>
     <ul class="nav nav-second-level">
-        <li> <a href="{{route('admin.class-schedule.index')}}">Show all Classes Scheduler</a> </li>
-        <li> <a href="{{route('admin.class-schedule.create')}}">Create Class Scheduler</a> </li>
+        <li> <a href="{{route('admin.class-schedule.index')}}">Show all Scheduler</a> </li>
+        <li> <a href="{{route('admin.class-schedule.create')}}">Create Scheduler</a> </li>
     </ul>
 </li>
 @endcanany

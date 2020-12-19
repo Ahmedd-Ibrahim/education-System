@@ -68,7 +68,7 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     Route::resource('student-register', 'StudentRegisterController');
 
     Route::resource('student-table', 'StudentsTableController');
-    
+
 }); // End of Dashboard Routes
 
 

@@ -5,40 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f0a6e05-6f24-4f24-bb0b-b82ef5a1094e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/DataTables/UsersDataTable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/update/UserUpdateRequst.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/actions.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/cdn.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/css.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard/user/table.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/ClassSchedulerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/ClassSchedulerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/ClassesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/ClassesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/FoodCycleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/FoodCycleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/GroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/GroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/HealthReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/HealthReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/PhaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/PhaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudentRegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudentRegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudentsTableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudentsTableController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudyScheduleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/StudyScheduleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/SubjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/SubjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/SubjectMiniGroupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/SubjectMiniGroupController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/roles/PermissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/roles/PermissionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/settings/basicsInfoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/settings/basicsInfoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/studentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/studentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/dashboard/teacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/dashboard/teacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/layout/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/layout/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/layout/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/layout/navigation.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboard/layout/sidebar_menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/layout/sidebar_menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/permission/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/permission/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/student/actions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/student/actions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/student/cdn.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/student/cdn.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/dashboard/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dashboard/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +155,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../devest" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -291,7 +259,8 @@
       <workItem from="1607452866986" duration="15424000" />
       <workItem from="1607691190225" duration="41000" />
       <workItem from="1608056788361" duration="8520000" />
-      <workItem from="1608290331898" duration="31105000" />
+      <workItem from="1608290331898" duration="31550000" />
+      <workItem from="1608371218101" duration="794000" />
     </task>
     <servers />
   </component>
