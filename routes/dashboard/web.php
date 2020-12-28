@@ -24,15 +24,28 @@ use Illuminate\Support\Facades\Route;
 
 // Dashboard Routes
 Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function (){
-    /* Roles and permission */
-    Route::namespace('roles')->group(function(){
-        Route::resource('roles', 'RolesController');
-        Route::resource('permission', 'PermissionController')->only(['create','store']);
-    });
-    /* End roles & Permissions*/
+
     Route::resource('users','UserController');
 
-    Route::resource('siteSettings','settings\basicsInfoController')->except(['show','store','edit','destroy','create']); //  Site basics Info settings
+    Route::namespace('settings')->name('front.')->group(function () {
+
+        Route::resource('siteSettings','basicsInfoController')->except(['show','store','edit','destroy','create']); //  Site basics Info settings
+
+
+        Route::resource('slide', 'slideController')->except('show');
+
+        Route::resource('service', 'ServiceController')->except('show');
+
+    }); // End of website settings
+
+
+     Route::namespace('roles')->group(function(){
+
+        Route::resource('roles', 'RolesController');
+
+        Route::resource('permission', 'PermissionController')->only(['create','store']);
+    }); // End of Roles
+
 
     Route::resource('mangerSetting' , 'settings\MangerAccountSettingController')->except(['show','store','edit','destroy','create']);
 
@@ -49,7 +62,7 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
 
     Route::resource('group','GroupController')->except('show');
 
-    Route::resource('class','classesController')->except('show');
+    Route::resource('class','ClassesController')->except('show');
 
     Route::resource('health-report','HealthReportController');
 

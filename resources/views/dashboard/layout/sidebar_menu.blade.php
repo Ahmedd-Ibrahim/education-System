@@ -12,9 +12,16 @@
 <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">Settings<span class="fa arrow"></span></span></a>
     <ul class="nav nav-second-level">
 
-        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Settings <span class="fa arrow"></span></a>
+        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i>Site  Settings <span class="fa arrow"></span></a>
             <ul class="nav nav-third-level">
-                <li> <a href="{{route('admin.siteSettings.index')}}">site basics Info </a> </li>
+
+                <li> <a href="{{route('admin.front.siteSettings.index')}}">site basics Info </a> </li>
+
+                <li> <a href="{{route('admin.front.slide.index')}}">slide </a> </li>
+
+                <li> <a href="{{route('admin.front.service.index')}}">Service </a> </li>
+
+
 
             </ul>
         </li>

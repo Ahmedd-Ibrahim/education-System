@@ -79,6 +79,11 @@ return [
             'root' => public_path('style/backend/images/food_cycle'),
             'visibility' => 'public',
         ],
+        'slide' => [
+            'driver' => 'local',
+            'root' => public_path('style/front/image/slide'),
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

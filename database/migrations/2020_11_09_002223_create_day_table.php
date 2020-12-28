@@ -22,7 +22,7 @@ class CreateDayTable extends Migration
 
         Schema::table('days', function (Blueprint $table) {
             $table->foreign('phase_scheduler_id')
-                ->on('phase_scheduler')
+                ->on('Phase_scheduler')
                 ->references('id')
                 ->onUpdate('cascade');
         });
