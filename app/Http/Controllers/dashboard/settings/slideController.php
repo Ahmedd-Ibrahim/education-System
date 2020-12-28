@@ -4,7 +4,7 @@ namespace App\Http\Controllers\dashboard\settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\front\slideRequest;
-use App\model\front\Slide;
+use App\models\front\Slide;
 use Illuminate\Http\Request;
 
 class slideController extends Controller
@@ -14,9 +14,11 @@ class slideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $slides = Slide::paginate(40);
+
         return view('website.slide.index',compact('slides'));
     }
 

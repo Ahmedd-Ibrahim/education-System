@@ -21,8 +21,10 @@
 
                 <li> <a href="{{route('admin.front.service.index')}}">Service </a> </li>
 
+                <li> <a href="{{route('admin.front.provide.index')}}">Service </a> </li>
 
-
+                <li> <a href="{{route('admin.front.professional.index')}}">professional </a> </li>
+                
             </ul>
         </li>
         {{-- Roles & permission--}}

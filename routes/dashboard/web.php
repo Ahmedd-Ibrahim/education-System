@@ -36,6 +36,10 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
 
         Route::resource('service', 'ServiceController')->except('show');
 
+        Route::resource('provide', 'ProviderController')->except('show');
+
+        Route::resource('professional', 'ProfessionalController')->except('show');
+
     }); // End of website settings
 
 

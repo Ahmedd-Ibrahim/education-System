@@ -84,6 +84,11 @@ return [
             'root' => public_path('style/front/image/slide'),
             'visibility' => 'public',
         ],
+        'professional' => [
+            'driver' => 'local',
+            'root' => public_path('style/front/image/professional'),
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\dashboard\settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\front\ServiceRequest;
-use App\model\front\Service;
+use App\models\front\Service;
 use GuzzleHttp\Psr7\ServerRequest;
 use Illuminate\Http\Request;
 
