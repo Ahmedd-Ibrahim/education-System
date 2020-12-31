@@ -27,6 +27,7 @@
                             <tr>
                                 <th data-toggle="true">title</th>
                                 <th> description </th>
+                                <th> icon class </th>
                                 <th data-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>
                             </tr>
@@ -38,6 +39,7 @@
                                     <tr>
                                         <td>{{$service->title}}</td>
                                         <td>{{$service->description}}</td>
+                                        <td>{{$service->class}}</td>
                                         <td>
                                             {{$service->created_at}}
                                         </td>
@@ -60,6 +62,7 @@
                             <tr>
                                 <th data-toggle="true">Name</th>
                                 <th> Description </th>
+                                <th> icon class </th>
 
                                 <th data-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>

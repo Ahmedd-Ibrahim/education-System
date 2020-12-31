@@ -23,3 +23,19 @@ function UploadImage($folder, $image){
 
     }
 }
+
+function  DeleteImage($imagePathAfterPublic)
+{
+    if($imagePathAfterPublic !== '' )
+    {
+        $path = public_path() . $imagePathAfterPublic;
+        if(file_exists($path))
+        {
+            unlink(public_path() . $imagePathAfterPublic);
+        }
+        else{
+            return $path;
+        }
+
+    }
+}

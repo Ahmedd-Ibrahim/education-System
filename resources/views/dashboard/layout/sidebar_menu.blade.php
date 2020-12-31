@@ -5,30 +5,8 @@
     <ul class="nav nav-second-level">
         <li> <a href="{{route('admin.users.index')}}">All Users</a> </li>
         <li> <a href="{{route('admin.users.create')}}">Add New User </a></li>
-    </ul>
-</li>
-
-{{-- Begin settings --}}
-<li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">Settings<span class="fa arrow"></span></span></a>
-    <ul class="nav nav-second-level">
-
-        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i>Site  Settings <span class="fa arrow"></span></a>
-            <ul class="nav nav-third-level">
-
-                <li> <a href="{{route('admin.front.siteSettings.index')}}">site basics Info </a> </li>
-
-                <li> <a href="{{route('admin.front.slide.index')}}">slide </a> </li>
-
-                <li> <a href="{{route('admin.front.service.index')}}">Service </a> </li>
-
-                <li> <a href="{{route('admin.front.provide.index')}}">Service </a> </li>
-
-                <li> <a href="{{route('admin.front.professional.index')}}">professional </a> </li>
-                
-            </ul>
-        </li>
-        {{-- Roles & permission--}}
-        <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Roles  <span class="fa arrow"></span></a>
+          {{-- Roles & permission--}}
+          <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> Roles  <span class="fa arrow"></span></a>
             <ul class="nav nav-third-level">
                 <li> <a href="{{route('admin.roles.create')}}">Add new Role </a> </li>
                 <li> <a href="{{route('admin.roles.index')}}">View All Roles </a> </li>
@@ -41,6 +19,37 @@
             </ul>
         </li>
         {{--End Roles & permission--}}
+    </ul>
+</li>
+
+{{-- Begin settings --}}
+<li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">website dashboard<span class="fa arrow"></span></span></a>
+    <ul class="nav nav-second-level">
+
+        <li> <a href="{{route('admin.front.siteSettings.index')}}">site basics Info </a> </li>
+
+        <li> <a href="{{route('admin.front.static-title.index')}}">site static titles </a> </li>
+
+        <li> <a href="{{route('admin.front.slide.index')}}">slide </a> </li>
+
+        <li> <a href="{{route('admin.front.service.index')}}">Service </a> </li>
+
+        <li> <a href="{{route('admin.front.provide.index')}}">Provide </a> </li>
+
+        <li> <a href="{{route('admin.front.professional.index')}}">professional </a> </li>
+
+        <li> <a href="{{route('admin.front.site-subject.index')}}">subjects </a> </li>
+
+        <li> <a href="{{route('admin.front.site-experince.index')}}">Experince </a> </li>
+
+        <li> <a href="{{route('admin.front.proof.index')}}">Proof </a> </li>
+
+        <li> <a href="{{route('admin.front.contact.index')}}">Contact </a> </li>
+
+        <li> <a href="{{route('admin.front.blog.index')}}">blog </a> </li>
+
+        <li> <a href="{{route('admin.front.comment.index')}}">comments </a> </li>
+
     </ul>
 </li>
 @endcanany

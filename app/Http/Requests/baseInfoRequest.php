@@ -24,11 +24,11 @@ class baseInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required',
-            'email'   => 'required',
-            'address' => 'required',
-            'phone'   => 'required' ,
-            'logo'    => 'mimes:jpeg,png,jpg'
+            'name'    => 'sometimes',
+            'email'   => 'sometimes',
+            'address' => 'sometimes',
+            'phone'   => 'sometimes' ,
+            'logo'    => 'sometimes|mimes:jpeg,png,jpg'
         ];
     }
 

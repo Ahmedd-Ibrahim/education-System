@@ -33,6 +33,18 @@
                                         <div class="alert alert-danger">  {{$message}} </div>
                                         @enderror
 
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Icon class</label>
+                                    <div class="col-md-9">
+                                        <input type="text" placeholder="icon class" class="form-control" name="class">
+                                        <span class="help-block"> class name for Icon</span>
+                                    </div>
+
+                                </div>
+                                @error('class')
+                                        <div class="alert alert-danger">  {{$message}} </div>
+                                        @enderror
+
                             </div>
                             <div class="form-actions">
                                 <div class="row">

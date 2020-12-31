@@ -87,6 +87,12 @@ class ProfessionalController extends Controller
 
         if(is_file($request['image']))
         {
+            if($professional->image)
+            {
+                DeleteImage('/style/front/image/'.$professional->image);
+
+            }
+
             $image = UploadImage('professional',$request['image']);
             $data['image'] = $image;
         }
@@ -103,6 +109,11 @@ class ProfessionalController extends Controller
      */
     public function destroy(Professional $professional)
     {
+        if($professional->image)
+        {
+             DeleteImage('/style/front/image/'.$professional->image);
+
+        }
         $professional->delete();
 
         return redirect()->back()->with('success','Deleted Successfully');

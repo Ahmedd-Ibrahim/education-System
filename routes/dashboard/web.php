@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +32,6 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
 
         Route::resource('siteSettings','basicsInfoController')->except(['show','store','edit','destroy','create']); //  Site basics Info settings
 
-
         Route::resource('slide', 'slideController')->except('show');
 
         Route::resource('service', 'ServiceController')->except('show');
@@ -40,8 +40,23 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
 
         Route::resource('professional', 'ProfessionalController')->except('show');
 
-    }); // End of website settings
+        Route::resource('site-subject', 'SiteSubjectController')->except('show');
 
+        Route::resource('site-experince', 'SiteExperinceController')->except('show');
+
+        Route::resource('proof', 'ProofController')->except('show');
+
+        Route::resource('contact', 'ContactController')->except('show');
+
+        Route::resource('blog', 'BlogController');
+
+        Route::resource('comment', 'CommentController');
+        Route::get('comment-active/{id}', 'CommentController@active')->name('active');
+
+        Route::resource('static-title', 'StaticTitleController')->only(['index','update']);
+
+
+    }); // End of website settings
 
      Route::namespace('roles')->group(function(){
 
@@ -50,7 +65,6 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
         Route::resource('permission', 'PermissionController')->only(['create','store']);
     }); // End of Roles
 
-
     Route::resource('mangerSetting' , 'settings\MangerAccountSettingController')->except(['show','store','edit','destroy','create']);
 
     Route::resource('student', 'studentController');
@@ -58,6 +72,7 @@ Route::prefix('dashboard')->middleware(['auth'])->name('admin.')->group(function
     Route::resource('teacher', 'teacherController')->except('show');
 
     Route::resource('subject','SubjectController')->except('show');
+
     Route::resource('subject-mini-group','SubjectMiniGroupController')->except('show');
 
     Route::resource('studyPhase','PhaseController')->except('show');

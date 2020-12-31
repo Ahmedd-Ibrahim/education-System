@@ -82,16 +82,23 @@ class slideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(slideRequest $request, $id)
+    public function update(Request $request, $id)
     {
 
         $slide = Slide::findOrFail($id);
         $data = $request->all();
         if(is_file($request->image))
         {
+            if($slide->image)
+            {
+                DeleteImage('/style/front/image/'.$slide->image);
+
+            }
+
             $image = UploadImage('slide',$request->image);
             $data['image'] =  $image;
         }
+
         $slide->update($data);
         return redirect()->route('admin.front.slide.index')->with('success','Your Slide added successfully');
     }
@@ -105,6 +112,12 @@ class slideController extends Controller
     public function destroy($id)
     {
         $slide = Slide::find($id);
+        
+        if($slide->image)
+            {
+                DeleteImage('/style/front/image/'.$slide->image);
+
+            }
         $slide->delete();
         return redirect()->back()->with('success','deleted Successfully');
     }

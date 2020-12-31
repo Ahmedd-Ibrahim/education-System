@@ -30,7 +30,10 @@
     <!-- color CSS -->
     <link href="{{asset('style/backend/custom/css/colors/blue.css')}}" id="theme" rel="stylesheet">
     <!-- Calendar CSS -->
+   
+    @yield('head')
 @yield('css')
+
     <style>
         #Students-table_filter{
             display: inline-block;

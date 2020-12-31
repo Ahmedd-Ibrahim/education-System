@@ -36,6 +36,19 @@
 
                                  @enderror
 
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">service class</label>
+                                    <div class="col-md-9">
+                                        <input type="text" placeholder="Description" class="form-control" name="class" value="{{$service->class}}">
+
+                                    </div>
+
+                                </div>
+                                
+                                @error('class')
+                                        <div class="alert alert-danger">  {{$message}} </div>
+                                 @enderror
+
                             </div>
                             <div class="form-actions">
                                 <div class="row">

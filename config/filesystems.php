@@ -90,6 +90,24 @@ return [
             'visibility' => 'public',
         ],
 
+        'site_subject' => [
+            'driver' => 'local',
+            'root' => public_path('style/front/image/site_subject'),
+            'visibility' => 'public',
+        ],
+
+        'proof' => [
+            'driver' => 'local',
+            'root' => public_path('style/front/image/proof'),
+            'visibility' => 'public',
+        ],
+
+        'blog' => [
+            'driver' => 'local',
+            'root' => public_path('style/front/image/blog'),
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

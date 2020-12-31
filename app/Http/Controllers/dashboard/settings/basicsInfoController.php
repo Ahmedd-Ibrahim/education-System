@@ -17,6 +17,7 @@ class basicsInfoController extends Controller
         $this->middleware(['permission:store settings|edit settings|update settings|delete settings|show settings']);
     }
 
+
     public function index()
     {
         $baseInfo = BasicsInfo::paginate(10);
@@ -26,17 +27,15 @@ class basicsInfoController extends Controller
     public function update(baseInfoRequest $request,  $basicsInfo)
     {
         $info = BasicsInfo::find($basicsInfo);
+        $data = $request->all();
         if(!$info){
             return redirect()->back()->with('error','There is no id for this information');
         }
         if($request->hasFile('logo')){
             RemoveImage($info->logo);
-            $path  = UploadImage('baseInfo',$request->logo);
-        }else{
-            $path ='';
+            $data['logo']  = UploadImage('baseInfo',$request->logo);
         }
-        $data = $request->except(['_token','logo']);
-        $data['logo'] = $path;
+
         $info->update($data);
         return redirect()->back()->with('success','Your request updated');
     } // End of update

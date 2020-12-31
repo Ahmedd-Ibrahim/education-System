@@ -20,7 +20,7 @@
                                 @error('name')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
-
+                            </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Job Title</label>
@@ -31,6 +31,7 @@
                                 @error('job_title')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
+                            </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">description</label>
@@ -38,9 +39,11 @@
                                         <input type="text" placeholder="description" class="form-control" name="description">
                                         <span class="help-block"> Description for professionalr </span> </div>
                                 </div>
+
                                 @error('description')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
+                            </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">twitter link</label>
@@ -51,7 +54,7 @@
                                 @error('twitter_link')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
-
+                            </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">fb link</label>
@@ -62,6 +65,7 @@
                                 @error('fb_link')
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
+                            </div>
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3">gmail link</label>
@@ -74,7 +78,7 @@
                                 <div class="alert alert-danger">    {{$message}} </div>
                                 @enderror
 
-                            <div class="form-body">
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3">insta link</label>
                                     <div class="col-md-9">
@@ -98,7 +102,8 @@
                                         <div class="alert alert-danger">  {{$message}} </div>
                                         @enderror
 
-                            </div>
+
+
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -111,7 +116,9 @@
                                     </div>
                                 </div>
                             </div>
+
                         </form>
+
                     </div>
                 </div>
             </div>

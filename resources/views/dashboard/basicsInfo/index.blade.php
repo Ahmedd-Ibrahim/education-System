@@ -25,7 +25,7 @@
                         @if(isset($baseInfo))
 
                             @foreach($baseInfo as $info)
-                        <form class="form-material form-horizontal"  action="{{route('admin.siteSettings.update',$info->id)}}" method="POST" enctype="multipart/form-data">
+                        <form class="form-material form-horizontal"  action="{{route('admin.front.siteSettings.update',$info->id)}}" method="POST" enctype="multipart/form-data">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
@@ -55,6 +55,7 @@
                             @error('address')
                             <div class="alert alert-danger">    {{$message}} </div>
                             @enderror
+
                             <div class="form-group">
                                 <label class="col-md-12">Phone Number</label>
                                 <div class="col-md-12">
@@ -64,6 +65,49 @@
                             @error('phone')
                             <div class="alert alert-danger">    {{$message}} </div>
                             @enderror
+
+
+                            <div class="form-group">
+                                <label class="col-md-12">facebook link</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="fb_link" class="form-control form-control-line"   value="{{$info->fb_link}}"  placeholder="Your facebook link">
+                                </div>
+                            </div>
+                            @error('fb_link')
+                            <div class="alert alert-danger">    {{$message}} </div>
+                            @enderror
+
+                            <div class="form-group">
+                                <label class="col-md-12">twitter link</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="twitter_link" class="form-control form-control-line"   value="{{$info->twitter_link}}"  placeholder="Your website twitter link">
+                                </div>
+                            </div>
+                            @error('fb_link')
+                            <div class="alert alert-danger">    {{$message}} </div>
+                            @enderror
+
+                            <div class="form-group">
+                                <label class="col-md-12">Insta link</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="insta_link" class="form-control form-control-line"   value="{{$info->insta_link}}"  placeholder="Your website insta link">
+                                </div>
+                            </div>
+                            @error('insta_link')
+                            <div class="alert alert-danger">    {{$message}} </div>
+                            @enderror
+
+                            <div class="form-group">
+                                <label class="col-md-12">google link</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="google_link" class="form-control form-control-line"   value="{{$info->google_link}}"  placeholder="Your website google link">
+                                </div>
+                            </div>
+                            @error('gogole_link')
+                            <div class="alert alert-danger">    {{$message}} </div>
+                            @enderror
+
+
                             @isset($info->logo)
                             <div class="img-thumbnail" >
                                 <img style="width: 150px" src="{{asset('style/backend/images/'.$info->logo)}}" alt="Logo">
