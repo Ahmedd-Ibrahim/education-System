@@ -15,8 +15,12 @@ class ClassesController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store class|edit class|update class|delete class|show class']);
+        $this->middleware(['permission:show class'])->only(['index']);
+        $this->middleware(['permission:store class'])->only(['create','store']);
+        $this->middleware(['permission:update class'])->only(['update','edit']);
+        $this->middleware(['permission:delete class'])->only(['destroy']);
     }
+
 
     public function index()
     {

@@ -14,9 +14,12 @@ class FoodCycleController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store food|edit food|update food|delete food|show food']);
+        $this->middleware(['permission:show food'])->only(['index']);
+        $this->middleware(['permission:store food'])->only(['create','store']);
+        $this->middleware(['permission:update food'])->only(['update','edit']);
+        $this->middleware(['permission:delete food'])->only(['destroy']);
     }
-
+    
     public function index()
     {
         $foodCycles = FoodCycle::paginate(50);

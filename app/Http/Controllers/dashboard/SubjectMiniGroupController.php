@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\Validator;
 class SubjectMiniGroupController extends Controller
 {
 
+
+
     public function __construct()
     {
-        $this->middleware(['permission:store subject|edit subject|update subject|delete subject|show subject']);
+        $this->middleware(['permission:show subject'])->only(['index']);
+        $this->middleware(['permission:store subject'])->only(['create','store']);
+        $this->middleware(['permission:update subject'])->only(['update','edit']);
+        $this->middleware(['permission:delete subject'])->only(['destroy']);
     }
 
+ 
     public function index()
     {
         $groups = SubjectMiniGroup::with('subject')->paginate(50);

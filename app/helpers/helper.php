@@ -5,6 +5,8 @@
  * uploading Images
  */
 
+use App\models\BasicsInfo;
+
 function UploadImage($folder, $image){
     $image->store('/',$folder);
     $fileName = $image->hashNAme();
@@ -38,4 +40,13 @@ function  DeleteImage($imagePathAfterPublic)
         }
 
     }
+}
+function GetBaseInfo()
+{
+    $base = BasicsInfo::first();
+    if(!$base)
+    {
+        return null;
+    }
+    return $base;
 }

@@ -22,7 +22,10 @@
                     <div class="white-box">
                         <h3 class="box-title m-b-0">blog</h3>
                         <p class="text-muted m-b-20">All Posts</p>
-                        <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                        <table id="demo-foo-row-toggler" style="
+                        display: block;
+                        overflow: hidden;
+                    " class="table toggle-circle table-hover">
                             <thead>
                             <tr>
                                 <th data-toggle="true">title</th>
@@ -42,7 +45,12 @@
                                         <td>{{$blog->intro}}</td>
 
                                         <td><img style="width:100px;" src="{{url('style/front/image/'.$blog->image)}}" alt=""></td>
-                                        <td>{!!$blog->content!!}</td>
+                                        <td >
+                                            <p class="text-wrap">
+                                                {{strip_tags($blog->content)}}
+                                            </p>
+                                            {{-- {!!$blog->content!!} --}}
+                                        </td>
                                         <td>
                                             {{$blog->created_at}}
                                         </td>

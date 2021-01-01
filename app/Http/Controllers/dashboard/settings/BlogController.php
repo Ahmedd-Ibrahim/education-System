@@ -17,8 +17,11 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::paginate(40);
+        
         return view('website.blog.index',compact('blogs'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.

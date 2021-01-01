@@ -34,7 +34,7 @@ class UserController extends Controller
          $pass = bcrypt($request['password']);
          $request['password'] = $pass;
          $user = User::create($request->except(['role']));
-         $user->assignRole($request['role']);
+         $user->syncRoles($request['role']);
          return redirect()->route('admin.users.index')->with('success','User added successfully');
 
     } // End of store

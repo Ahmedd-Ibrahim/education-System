@@ -39,4 +39,5 @@
       font-size: 18px;
     }
   </style>
+  @yield('css')
 </head>

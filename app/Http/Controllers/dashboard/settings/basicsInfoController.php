@@ -14,7 +14,10 @@ class basicsInfoController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store settings|edit settings|update settings|delete settings|show settings']);
+        $this->middleware(['permission:show website'])->only(['index']);
+        $this->middleware(['permission:store website'])->only(['create','store']);
+        $this->middleware(['permission:update website'])->only(['update','edit']);
+        $this->middleware(['permission:delete website'])->only(['destroy']);
     }
 
 

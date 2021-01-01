@@ -363,17 +363,33 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-lg-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20 d-flex align-items-end"
-              style="background-image: url('{{asset('style/front/images/image_1.jpg')}}')">
-            </a>
-            <div class="text bg-white p-4">
-              <h3 class="heading" style="text-align: right;">تنمية و تطوير ذكاء طفلك</h3>
-              <p style="text-align: right;">مساعدة طفلك لتنمية مهاراته</p>
+          @if (isset($blogs) && count($blogs) > 2 )
+          @foreach ($blogs as $blog)
+          <div class="col-md-6 col-lg-4 ftco-animate">
+            <div class="blog-entry">
+              <a href="blog-single.html" class="block-20 d-flex align-items-end"
+                style="background-image: url('{{asset('style/front/image/').'/'.$blog->image}}')">
+              </a>
+              <div class="text bg-white p-4">
+                <h3 class="heading" style="text-align: right;">{{$blog->title}}</h3>
+                <p style="text-align: right;">{!!$blog->content!!}</p>
+              </div>
             </div>
           </div>
-        </div>
+          @endforeach
+          @else
+          <div class="col-md-6 col-lg-4 ftco-animate">
+            <div class="blog-entry">
+              <a href="blog-single.html" class="block-20 d-flex align-items-end"
+                style="background-image: url('{{asset('style/front/images/image_1.jpg')}}')">
+              </a>
+              <div class="text bg-white p-4">
+                <h3 class="heading" style="text-align: right;">تنمية و تطوير ذكاء طفلك</h3>
+                <p style="text-align: right;">مساعدة طفلك لتنمية مهاراته</p>
+              </div>
+            </div>
+          </div>
+
         <div class="col-md-6 col-lg-4 ftco-animate">
           <div class="blog-entry">
             <a href="blog-single.html" class="block-20 d-flex align-items-end"
@@ -386,6 +402,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4 ftco-animate">
+
           <div class="blog-entry">
             <a href="blog-single.html" class="block-20 d-flex align-items-end"
               style="background-image: url('{{asset('style/front/images/image_3.jpg')}}')">
@@ -396,6 +413,7 @@
             </div>
           </div>
         </div>
+        @endif
       </div>
     </div>
   </section>

@@ -14,8 +14,12 @@ class GroupController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:store config|edit config|update config|delete config|show config']);
+        $this->middleware(['permission:show config'])->only(['index']);
+        $this->middleware(['permission:store config'])->only(['create','store']);
+        $this->middleware(['permission:update config'])->only(['update','edit']);
+        $this->middleware(['permission:delete config'])->only(['destroy']);
     }
+
 
     public function index()
     {

@@ -14,16 +14,16 @@
               <ul>
                 <li>
                   <span class="icon icon-map-marker"></span><span class="text">
-                    @if ($info){{$info->address}}@endif
+                    @isset ($info){{$info->address}}@endisset
                     </span>
                 </li>
                 <li>
-                  <a href="tel:+201115799072"><span class="icon icon-phone"></span><span
-                      class="text">&nbsp;&nbsp;@if ($info){{$info->phone}}@endif</span></a>
+                  <a href="tel:+info><span class="icon icon-phone"></span><span
+                      class="text">&nbsp;&nbsp;@isset ($info){{$info->phone}}@endisset</span></a>
                 </li>
                 <li>
                   <a href="mailto:support@ruched.org"><span class="icon icon-envelope"></span><span
-                      class="text">&nbsp;&nbsp;@if ($info){{$info->email}}@endif</span></a>
+                      class="text">&nbsp;@isset ($info){{$info->email}}@endisset</span></a>
                 </li>
               </ul>
             </div>
@@ -63,13 +63,13 @@
             </h2>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
               <li class="ftco-animate">
-                <a href="@if ($info){{$info->twitter_link}}@endif"><span class="icon-twitter"></span></a>
+                <a href="info"><span class="icon-twitter"></span></a>
               </li>
               <li class="ftco-animate">
-                <a href="@if ($info){{$info->fb_link}}@endif"><span class="icon-facebook"></span></a>
+                <a href="info"><span class="icon-facebook"></span></a>
               </li>
               <li class="ftco-animate">
-                <a href="@if ($info){{$info->insta_link}}@endif"><span class="icon-instagram"></span></a>
+                <a href="info"><span class="icon-instagram"></span></a>
               </li>
             </ul>
           </div>

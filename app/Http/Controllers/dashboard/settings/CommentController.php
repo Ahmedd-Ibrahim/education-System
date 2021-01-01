@@ -15,6 +15,14 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['permission:show website'])->only(['index']);
+        $this->middleware(['permission:store website'])->only(['create','store']);
+        $this->middleware(['permission:update website'])->only(['update','edit','active']);
+        $this->middleware(['permission:delete website'])->only(['destroy']);
+    }
+
     public function index()
     {
         $comments = Comment::paginate(40);

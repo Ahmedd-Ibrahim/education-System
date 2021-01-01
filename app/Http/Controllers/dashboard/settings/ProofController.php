@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class ProofController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware(['permission:show website'])->only(['index']);
+        $this->middleware(['permission:store website'])->only(['create','store']);
+        $this->middleware(['permission:update website'])->only(['update','edit']);
+        $this->middleware(['permission:delete website'])->only(['destroy']);
+    }
+
     public function index()
     {
         $proofs = Proof::paginate(40);

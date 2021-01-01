@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\Validator;
 class HealthReportController extends Controller
 {
 
-
     public function __construct()
     {
-        $this->middleware(['permission:store health|edit health|update health|delete health|show health']);
+        $this->middleware(['permission:show health'])->only(['index']);
+        $this->middleware(['permission:store health'])->only(['create','store']);
+        $this->middleware(['permission:update health'])->only(['update','edit']);
+        $this->middleware(['permission:delete health'])->only(['destroy']);
     }
 
     public function index()

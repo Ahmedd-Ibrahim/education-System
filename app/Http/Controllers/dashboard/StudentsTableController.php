@@ -11,12 +11,14 @@ use Illuminate\Http\Response;
 class StudentsTableController extends Controller
 {
 
-
     public function __construct()
     {
-        $this->middleware(['permission:store student|edit student|update student|delete student|show student']);
+        $this->middleware(['permission:show student'])->only(['index']);
+        $this->middleware(['permission:store student'])->only(['create','store']);
+        $this->middleware(['permission:update student'])->only(['update','edit']);
+        $this->middleware(['permission:delete student'])->only(['destroy']);
     }
-
+   
     public function index(StudentsDataTables $dataTable)
     {
          $student_class = Student::with('class:id,name');

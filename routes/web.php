@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontController@index')->name('front');
 
+Route::get('/blog', 'FrontController@blog')->name('front.posts');
+
+Route::get('/blog/post/{id}', 'FrontController@SinglePage')->name('front.posts.single');
+
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');

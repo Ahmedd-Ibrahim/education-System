@@ -22,6 +22,7 @@
     </ul>
 </li>
 @endcanany
+
 {{-- Begin settings --}}
 @canany(['show website','store website','edit website','update website'])
 <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i>  <span class="hide-menu">website dashboard<span class="fa arrow"></span></span></a>

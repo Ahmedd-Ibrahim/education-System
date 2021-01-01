@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\BasicsInfo;
+use App\models\front\Blog;
 use App\models\front\Professional;
 use App\models\front\Proof;
 use App\models\front\Provide;
@@ -12,7 +13,7 @@ use App\models\front\SiteExperince;
 use App\models\front\SiteSubject;
 use App\models\front\StaticTitle;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
+
 class FrontController extends Controller
 {
     /**
@@ -23,10 +24,7 @@ class FrontController extends Controller
     public function index()
     {
 
-
-         
-
-        $info = BasicsInfo::first();
+        $info = GetBaseInfo();
 
         $slides = Slide::paginate(10);
 
@@ -44,23 +42,44 @@ class FrontController extends Controller
 
         $proofs = Proof::paginate(10);
 
+        $blogs = Blog::paginate(3);
+
         return view('website.frontend.index',
         compact('info','slides','provides','services','static','professionals','subjects',
-        'experinces','proofs'
+        'experinces','proofs','blogs'
     ));
+    }
+
+    public function blog() // blog page
+    {
+        $slide = Slide::first();
+
+        $info = GetBaseInfo();
+
+        $blogs = Blog::paginate(12);
+
+        return view('website.frontend.blog',compact('info','slide','blogs'));
+    }
+
+    public function SinglePage($id)
+    {
+
+        $post = Blog::findOrFail($id);
+
+        $slide = Slide::first();
+
+         $latests = Blog::latest()->limit(3)->get();
+
+         $info = GetBaseInfo();
+         
+        return view('website.frontend.blog-single-page',compact('post','slide','latests','info'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -80,7 +99,7 @@ class FrontController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -116,4 +135,5 @@ class FrontController extends Controller
     {
         //
     }
+
 }

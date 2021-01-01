@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Validator;
 class teacherController extends Controller
 {
 
+
     public function __construct()
     {
-        $this->middleware(['permission:store prof|edit prof|update prof|delete prof|show prof']);
+        $this->middleware(['permission:show prof'])->only(['index']);
+        $this->middleware(['permission:store prof'])->only(['create','store']);
+        $this->middleware(['permission:update prof'])->only(['update','edit']);
+        $this->middleware(['permission:delete prof'])->only(['destroy']);
     }
+
 
     public function index()
     {

@@ -16,6 +16,15 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware(['permission:show settings'])->only(['index']);
+        $this->middleware(['permission:store settings'])->only(['create','store']);
+        $this->middleware(['permission:update settings'])->only(['update','edit','active']);
+        $this->middleware(['permission:delete settings'])->only(['destroy']);
+    }
+
     public function index()
     {
         //
