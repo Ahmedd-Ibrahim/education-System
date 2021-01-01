@@ -42,7 +42,7 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-        return redirect()->route('admin.front.contact.index')->with('success','Added Success');
+        return redirect()->back()->with('success','Added Success');
     }
 
     /**
@@ -78,7 +78,7 @@ class ContactController extends Controller
     {
 
         $contact->update($request->all());
-        
+
         return redirect()->route('admin.front.contact.index')->with('success','updated Successfully');
 
     }

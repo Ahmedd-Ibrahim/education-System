@@ -36,7 +36,6 @@ class ContactRequest extends FormRequest
         return [
 
             '*.required' =>'This filed is required',
-
         ];
     }
 }

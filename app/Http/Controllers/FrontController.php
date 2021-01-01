@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\models\BasicsInfo;
 use App\models\front\Professional;
+use App\models\front\Proof;
 use App\models\front\Provide;
 use App\models\front\Slide;
 use App\models\front\Service;
+use App\models\front\SiteExperince;
+use App\models\front\SiteSubject;
 use App\models\front\StaticTitle;
 use Illuminate\Http\Request;
-
+use Spatie\Permission\Models\Permission;
 class FrontController extends Controller
 {
     /**
@@ -20,6 +23,8 @@ class FrontController extends Controller
     public function index()
     {
 
+
+         
 
         $info = BasicsInfo::first();
 
@@ -32,8 +37,17 @@ class FrontController extends Controller
         $static = StaticTitle::first();
 
         $professionals = Professional::paginate(4);
+
+        $subjects = SiteSubject::paginate(9);
+
+        $experinces = SiteExperince::first();
+
+        $proofs = Proof::paginate(10);
+
         return view('website.frontend.index',
-        compact('info','slides','provides','services','static','professionals'));
+        compact('info','slides','provides','services','static','professionals','subjects',
+        'experinces','proofs'
+    ));
 
     }
 

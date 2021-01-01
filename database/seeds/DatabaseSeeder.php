@@ -1,5 +1,6 @@
 <?php
 
+use App\models\front\SiteExperince;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(front_provideSeeder::class);
         $this->call(front_StaticTitleSeeder::class);
         $this->call(SiteServiceSeeder::class);
+        $this->call(frontExperinceSeeder::class);
+
     }
 }

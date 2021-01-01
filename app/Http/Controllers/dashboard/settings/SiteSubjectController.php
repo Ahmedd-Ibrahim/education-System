@@ -17,6 +17,7 @@ class SiteSubjectController extends Controller
     public function index()
     {
         $subjects = SiteSubject::paginate(40);
+        
         return view('website.site_subject.index',compact('subjects'));
     }
 
@@ -115,7 +116,7 @@ class SiteSubjectController extends Controller
                 DeleteImage('/style/front/image/'.$siteSubject->image);
 
             }
-            
+
         $siteSubject->delete();
         return redirect()->back()->with('susccess','Deleted successfully');
     }

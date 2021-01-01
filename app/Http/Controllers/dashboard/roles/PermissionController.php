@@ -38,9 +38,10 @@ class PermissionController extends Controller
         $foods      = Permission::where('name','like','%food%')->get();
         $schedulers = Permission::where('name','like','%scheduler%')->get();
         $students = Permission::where('name','like','%student%')->get();
+        $website = Permission::where('name','like','%website%')->get();
         $roles = Role::all();
         return view('dashboard.permission.add',compact('settings','configs','class','profs','student',
-        'subjects','healths','foods','schedulers','students','roles'));
+        'subjects','healths','foods','schedulers','students','roles','website'));
     }
 
     /**

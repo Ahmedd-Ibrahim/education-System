@@ -23,6 +23,13 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'update settings']);
         Permission::create(['name' => 'show settings']);
 
+        // create website permissions
+        Permission::create(['name' => 'edit website']);
+        Permission::create(['name' => 'delete website']);
+        Permission::create(['name' => 'store website']);
+        Permission::create(['name' => 'update website']);
+        Permission::create(['name' => 'show website']);
+
 
         // create config permissions
         Permission::create(['name' => 'edit config']);

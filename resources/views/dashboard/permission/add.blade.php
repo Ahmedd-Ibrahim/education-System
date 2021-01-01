@@ -10,6 +10,40 @@
                         <form action="{{route('admin.permission.store')}}" class="form-horizontal form-bordered" method="POST">
                             @csrf
                             <div id="accordion">
+
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#web" aria-expanded="true" aria-controls="web">
+                                                website
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="web" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <div class="row">
+
+                                                @if($website)
+                                                    @foreach($website as $web)
+                                                        <div class="col-md-3 col-sm-6">
+                                                            <div class="form-check form-control" style="border: none">
+                                                                <input name="permission[]" class="form-check-input form-check-input" type="checkbox" value="{{$web->name}}" id="defaultCheck1">
+                                                                <label class="form-check-label " for="defaultCheck1" style="margin: 2px;">
+                                                                    {{$web->name}}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
@@ -19,7 +53,7 @@
                                         </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
 
                                             <div class="row">

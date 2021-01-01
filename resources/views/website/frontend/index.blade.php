@@ -180,39 +180,22 @@
     <div class="container" style="direction: rtl;">
       <div class="row justify-content-center mb-5 pb-2">
         <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4"><span>المواد</span> الدراسية</h2>
-          <p>اليك نبذة عن المواد الجراسية الخاصة بمنظمة رشد التعليمية</p>
+          <h2 class="mb-4"> @if($static) {{$static->subject_title}}@endif</h2>
+          <p> @if($static) {{$static->subject_sub_title}}@endif</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 course d-lg-flex ftco-animate">
-          <div class="img" style="background-image: url({{asset('style/front/images/course-1.jpg')}})"></div>
-          <div class="text bg-light p-4">
-            <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">لغة عربية</h3>
-            <p style="text-align: right;">تعليم اساسيات اللغة العربية</p>
+          @if ($subjects)
+          @foreach ($subjects as $subject)
+          <div class="col-md-6 course d-lg-flex ftco-animate">
+            <div class="img" style="background-image: url({{asset('style/front/image/').'/'.$subject->image}})"></div>
+            <div class="text bg-light p-4">
+              <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">{{$subject->name}}</h3>
+              <p style="text-align: right;">{{$subject->description}}</p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6 course d-lg-flex ftco-animate">
-          <div class="img" style="background-image: url({{asset('style/front/images/course-2.jpg')}})"></div>
-          <div class="text bg-light p-4">
-            <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">لغة إنجليزية</h3>
-            <p style="text-align: right;">تعليم اساسيات اللغة الإنجليزية</p>
-          </div>
-        </div>
-        <div class="col-md-6 course d-lg-flex ftco-animate">
-          <div class="img" style="background-image: url({{asset('style/front/images/course-3.jpg')}})"></div>
-          <div class="text bg-light p-4">
-            <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">رياضيات</h3>
-            <p style="text-align: right;">تعليم العمليات الحسابية البسيطة</p>
-          </div>
-        </div>
-        <div class="col-md-6 course d-lg-flex ftco-animate">
-          <div class="img" style="background-image: url({{asset('style/front/images/course-4.jpg')}})"></div>
-          <div class="text bg-light p-4">
-            <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">مادة ديسكفري</h3>
-            <p style="text-align: right;">تعليم المزيد من المهارات لطفلك لتنمية مهاراته</p>
-          </div>
-        </div>
+          @endforeach
+          @endif
       </div>
     </div>
   </section>
@@ -225,8 +208,8 @@
     <div class="container">
       <div class="row justify-content-center mb-5 pb-2">
         <div class="col-md-8 text-center heading-section heading-section-black ftco-animate">
-          <h2 class="mb-4"><span>٢٠ سنة من </span>الخبرة</h2>
-          <p>تعرف علي خبراتنا في مجال عملنا</p>
+          <h2 class="mb-4"><span>@if($experinces) {{$experinces->title}}@endif </span></h2>
+          <p>@if($experinces) {{$experinces->description}}@endif </p>
         </div>
       </div>
       <div class="row d-md-flex align-items-center justify-content-center">
@@ -236,8 +219,8 @@
               <div class="block-18">
                 <div class="icon"><span class="flaticon-doctor"></span></div>
                 <div class="text">
-                  <strong class="number" data-number="18">0</strong>
-                  <span>معلمين معتمدين</span>
+                  <strong class="number" data-number="@if($experinces) {{$experinces->reowrd_number}}@endif">0</strong>
+                  <span>@if($experinces) {{$experinces->reowrd}}@endif </span>
                 </div>
               </div>
             </div>
@@ -245,8 +228,8 @@
               <div class="block-18">
                 <div class="icon"><span class="flaticon-doctor"></span></div>
                 <div class="text">
-                  <strong class="number" data-number="351">0</strong>
-                  <span>طفل ناجح</span>
+                  <strong class="number" data-number="@if($experinces) {{$experinces->parent_number}}@endif">0</strong>
+                  <span>@if($experinces) {{$experinces->parent}}@endif</span>
                 </div>
               </div>
             </div>
@@ -254,8 +237,8 @@
               <div class="block-18">
                 <div class="icon"><span class="flaticon-doctor"></span></div>
                 <div class="text">
-                  <strong class="number" data-number="564">0</strong>
-                  <span>آباء سعداء</span>
+                  <strong class="number" data-number="@if($experinces) {{$experinces->child_number}}@endif">0</strong>
+                  <span>@if($experinces) {{$experinces->child}}@endif</span>
                 </div>
               </div>
             </div>
@@ -263,8 +246,8 @@
               <div class="block-18">
                 <div class="icon"><span class="flaticon-doctor"></span></div>
                 <div class="text">
-                  <strong class="number" data-number="300">0</strong>
-                  <span>جوائز</span>
+                  <strong class="number" data-number="@if($experinces) {{$experinces->teacher_number}}@endif">0</strong>
+                  <span>@if($experinces) {{$experinces->teacher}}@endif</span>
                 </div>
               </div>
             </div>
@@ -281,81 +264,31 @@
     <div class="container">
       <div class="row justify-content-center mb-5 pb-2">
         <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4"><span>ما يقوله </span>الآباء عنا</h2>
+          <h2 class="mb-4"><span>  @if($static) {{$static->experince_title}}@endif</span></h2>
         </div>
       </div>
       <div class="row ftco-animate justify-content-center">
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel">
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url({{asset('style/front/images/teacher-1.jpg')}})"></div>
-                <div class="text ml-2 bg-light">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>
-                    لقد استفدت جدا من هذا الكيان حيث ساعدتني رشد في ضبط طفلي نفسيا و اخلاقيا
-                  </p>
-                  <p class="name">Racky Henderson</p>
-                  <span class="position">Mother</span>
+              @if ($proofs)
+              @foreach ($proofs as $proof)
+              <div class="item">
+                <div class="testimony-wrap d-flex">
+                  <div class="user-img mr-4" style="background-image: url({{asset('style/front/image/').'/'.$proof->image}})"></div>
+                  <div class="text ml-2 bg-light">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                    <p>
+                        {{$proof->description}}
+                     </p>
+                    <p class="name"> {{$proof->title}}</p>
+                    <span class="position"> {{$proof->sub_title}}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url({{asset('style/front/images/teacher-2.jpg')}})"></div>
-                <div class="text ml-2 bg-light">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>
-                    لقد استفدت جدا من هذا الكيان حيث ساعدتني رشد في ضبط طفلي نفسيا و اخلاقيا
-                  </p>
-                  <p class="name">Henry Dee</p>
-                  <span class="position">Mother</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url({{asset('style/front/images/teacher-3.jpg')}})"></div>
-                <div class="text ml-2 bg-light">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>لقد استفدت جدا من هذا الكيان حيث ساعدتني رشد في ضبط طفلي نفسيا و اخلاقيا</p>
-                  <p class="name">Mark Huff</p>
-                  <span class="position">Mother</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url({{asset('style/front/images/teacher-4.jpg')}})"></div>
-                <div class="text ml-2 bg-light">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>لقد استفدت جدا من هذا الكيان حيث ساعدتني رشد في ضبط طفلي نفسيا و اخلاقيا</p>
-                  <p class="name">Rodel Golez</p>
-                  <span class="position">Mother</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url({{asset('style/front/images/teacher-1.jpg')}})"></div>
-                <div class="text ml-2 bg-light">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>لقد استفدت جدا من هذا الكيان حيث ساعدتني رشد في ضبط طفلي نفسيا و اخلاقيا</p>
-                  <p class="name">Ken Bosh</p>
-                  <span class="position">Mother</span>
-                </div>
-              </div>
-            </div>
+              @endforeach
+              @endif
           </div>
         </div>
       </div>
@@ -374,57 +307,46 @@
           <div class="heading-section heading-section-white ftco-animate mb-5">
             <h2 class="mb-4">تواصل معنا</h2>
           </div>
-          <form action="#" class="appointment-form ftco-animate">
+          <form action="{{route('admin.front.contact.store')}}" class="appointment-form ftco-animate" method="POST">
+            @csrf
             <div class="d-md-flex">
               <div class="form-group" style="margin: 10px;">
-                <input type="text" class="form-control" placeholder="الإسم الأول" />
-              </div>
-              <div class="form-group ml-md-4" style="margin: 10px;">
-                <input type="text" class="form-control" placeholder="الإسم الآخر" />
+                <input type="text" class="form-control" placeholder="الإسم" name="username" />
               </div>
             </div>
+            @error('username')
+               <div class="alert alert-danger">  {{$message}} </div>
+            @enderror
             <div class="d-md-flex">
-              <div class="form-group" style="margin: 10px;text-align: center;">
-                <div class="form-field">
-                  <div class="select-wrap">
-                    <div class="icon">
-                      <span class="ion-ios-arrow-down"></span>
-                    </div>
-                    <select name="" id="" class="form-control" style="color: skyblue">
-                      <option value="" style="color: skyblue;text-align: center;" disabled selected>
-                        المادة المطلوبة
-                      </option>
-                      <option value="" style="color: skyblue">
-                        اللغة العربية
-                      </option>
-                      <option value="" style="color: skyblue">
-                        اللغة الإنجليزية
-                      </option>
-                      <option value="" style="color: skyblue">
-                        الرياضيات
-                      </option>
-                      <option value="" style="color: skyblue">
-                        مادة ديسكفري
-                      </option>
-                      <option value="" style="color: skyblue">
-                        مواد اخري
-                      </option>
-                    </select>
-                  </div>
-                </div>
+              <div class="form-group" style="margin: 10px;">
+                <input type="email" class="form-control" placeholder="البريد الألكتروني" name="email" />
               </div>
+
+            </div>
+            @error('email')
+                <div class="alert alert-danger">  {{$message}} </div>
+             @enderror
+            <div class="d-md-flex">
               <div class="form-group ml-md-4" style="margin: 10px;">
-                <input type="text" class="form-control" placeholder="رقم الهاتف" />
+                <input type="number" class="form-control" placeholder="رقم الهاتف" name="phone" />
               </div>
             </div>
+            @error('phone')
+                 <div class="alert alert-danger">  {{$message}} </div>
+            @enderror
             <div class="d-md-flex" >
               <div class="form-group" style="margin: 10px;">
-                <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="اكتب رسالتك"></textarea>
-              </div>
-              <div class="form-group ml-md-4" style="margin: 10px;">
-                <input type="submit" value="اطلب الآن" class="btn btn-secondary py-3 px-4" />
+                <textarea  id="" cols="30" rows="2" class="form-control" placeholder="اكتب رسالتك" name="message"></textarea>
               </div>
             </div>
+            @error('message')
+             <div class="alert alert-danger">  {{$message}} </div>
+             @enderror
+            <div class="d-md-flex">
+                <div class="form-group ml-md-4" style="margin: 10px;">
+                    <input type="submit" value="اطلب الآن" class="btn btn-secondary py-3 px-4" />
+                  </div>
+              </div>
           </form>
         </div>
       </div>
