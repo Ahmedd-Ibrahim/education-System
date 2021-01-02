@@ -1,56 +1,22 @@
 @extends('website.frontend.layout.main')
 @section('content')
-<section class="home-slider owl-carousel">
 
-    @if(isset($slides) && count($slides) > 0)
-    @foreach ($slides as $slide)
-    <div class="slider-item" style="background-image: url({{asset('style/front/image/').'/'.$slide->image}})">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
-            <div class="col-md-8 text-center ftco-animate">
-              <h1 class="mb-4">{{$slide->title}}</h1>
-            </div>
-          </div>
+@if(isset($slide))
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('style/front/image/').'/'.$slide->image}}');" style="direction: rtl;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+          <h1 class="mb-2 bread">من نحن</h1>
+          <p class="breadcrumbs"><span class="mr-2"><a href="{{route('front')}}">الرئيسية <i class="icon ion-ios-arrow-back" style="color: white;"></i></a></a></span> <span>من نحن  <i class="icon ion-ios-arrow-back" style="color: white;"></i></a></span></p>
         </div>
-      </div>
-    @endforeach
-    @endif
-
-
-  </section>
-
-  <!--Slider section start-->
-
-  <!--services section start-->
-
-  <section class="ftco-services ftco-no-pb">
-    <div class="container-wrap">
-      <div class="row no-gutters">
-
-        @if ($provides)
-        @foreach ($provides as $item)
-        <div class="col-md-3 d-flex services align-self-stretch pb-4 px-4 ftco-animate bg-primary">
-            <div class="media block-6 d-block text-center">
-              <div class="icon d-flex justify-content-center align-items-center">
-                <span class="{{$item->class}}"></span>
-              </div>
-              <div class="media-body p-2 mt-3">
-                <h3 class="heading">{{$item->title}}</h3>
-                <p>
-                {{$item->description}}
-                </p>
-              </div>
-            </div>
-          </div>
-        @endforeach
-        @endif
-
       </div>
     </div>
   </section>
 
-  <!--services section end-->
+    @endif
+
+  <!--Slider section start-->
 
   <!--welcome section start-->
   <section class="ftco-section ftco-no-pt ftc-no-pb bg-light">
@@ -117,89 +83,8 @@
   </section>
   <!--intro section end-->
 
-  <!--Teachers Section start-->
-  <section class="ftco-section ftco-no-pb">
-    <div class="container">
-      <div class="row justify-content-center mb-5 pb-2">
-        <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4">
-            @if($static) {{$static->professional_title}}@endif
 
-          </h2>
-          <p>
-            @if($static) {{$static->professional_sub_title}}@endif
 
-          </p>
-        </div>
-      </div>
-      <div class="row">
-
-        @if ($professionals)
-        @foreach ($professionals as $professional)
-        <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="staff">
-              <div class="img-wrap d-flex align-items-stretch">
-                <div class="img align-self-stretch" style="background-image: url({{asset('style/front/image/').'/'.$professional->image}})"></div>
-              </div>
-              <div class="text pt-3 text-center">
-                <h3>{{$professional->name}}</h3>
-                <span class="position mb-2">{{$professional->job_name}}</span>
-                <div class="faded">
-                  <p>
-                    {{$professional->description}}
-                  </p>
-                  <ul class="ftco-social text-center">
-                    <li class="ftco-animate">
-                      <a href="{{$professional->twiiter_link}}"><span class="icon-twitter"></span></a>
-                    </li>
-                    <li class="ftco-animate">
-                      <a href="{{$professional->fb_link}}"><span class="icon-facebook"></span></a>
-                    </li>
-                    <li class="ftco-animate">
-                      <a href="{{$professional->google_link}}"><span class="icon-google-plus"></span></a>
-                    </li>
-                    <li class="ftco-animate">
-                      <a href="{{$professional->insta}}"><span class="icon-instagram"></span></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        @endforeach
-        @endif
-
-      </div>
-    </div>
-  </section>
-  <!--Teachers Section start-->
-
-  <!--Our Courses start-->
-
-  <section class="ftco-section">
-    <div class="container" style="direction: rtl;">
-      <div class="row justify-content-center mb-5 pb-2">
-        <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4"> @if($static) {{$static->subject_title}}@endif</h2>
-          <p> @if($static) {{$static->subject_sub_title}}@endif</p>
-        </div>
-      </div>
-      <div class="row">
-          @if ($subjects)
-          @foreach ($subjects as $subject)
-          <div class="col-md-6 course d-lg-flex ftco-animate">
-            <div class="img" style="background-image: url({{asset('style/front/image/').'/'.$subject->image}})"></div>
-            <div class="text bg-light p-4">
-              <h3 style="color: #89cff0; font-weight: bolder;text-align: right;">{{$subject->name}}</h3>
-              <p style="text-align: right;">{{$subject->description}}</p>
-            </div>
-          </div>
-          @endforeach
-          @endif
-      </div>
-    </div>
-  </section>
-  <!--Our Courses end-->
 
   <!--experiance section start-->
 
@@ -353,80 +238,5 @@
     </div>
   </section>
   <!--contact us end-->
-
-  <!--blog section start-->
-  <section class="ftco-section bg-light">
-    <div class="container">
-      <div class="row justify-content-center mb-5 pb-2">
-        <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4"><span>اخر</span> الأخبار</h2>
-        </div>
-      </div>
-      <div class="row">
-          @if (isset($blogs) && count($blogs) > 2 )
-          @foreach ($blogs as $blog)
-          <div class="col-md-6 col-lg-4 ftco-animate">
-            <div class="blog-entry">
-              <a href="{{route('front.posts.single',$blog->id)}}" class="block-20 d-flex align-items-end"
-                style="background-image: url('{{asset('style/front/image/').'/'.$blog->image}}')">
-              </a>
-              <div class="text bg-white p-4">
-                <h3 class="heading" style="text-cebter: right;">{{$blog->title}}</h3>
-                <div class="row">
-                    <div class="col-9 text-truncate">
-                        <p style="text-center: right;">{!!$blog->content!!}</p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-center mt-4">
-                    <p class="mb-0"><a href="{{route('front.posts.single',$blog->id)}}" class="btn btn-secondary">اقرأ المزيد <span class="ion-ios-arrow-round-back" style="color: white;"></span></a></p>
-                    <p class="ml-auto mb-0">
-                    </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          @endforeach
-          @else
-          <div class="col-md-6 col-lg-4 ftco-animate">
-            <div class="blog-entry">
-              <a href="#" class="block-20 d-flex align-items-end"
-                style="background-image: url('{{asset('style/front/images/image_1.jpg')}}')">
-              </a>
-              <div class="text bg-white p-4">
-                <h3 class="heading" style="text-align: right;">تنمية و تطوير ذكاء طفلك</h3>
-                <p style="text-align: right;">مساعدة طفلك لتنمية مهاراته</p>
-              </div>
-            </div>
-          </div>
-
-        <div class="col-md-6 col-lg-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="#" class="block-20 d-flex align-items-end"
-              style="background-image: url('{{asset('style/front/images/image_2.jpg')}}')">
-            </a>
-            <div class="text bg-white p-4">
-              <h3 class="heading" style="text-align: right;">تنمية و تطوير ذكاء طفلك</h3>
-              <p style="text-align: right;">مساعدة طفلك لتنمية مهاراته</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 ftco-animate">
-
-          <div class="blog-entry">
-            <a href="#" class="block-20 d-flex align-items-end"
-              style="background-image: url('{{asset('style/front/images/image_3.jpg')}}')">
-            </a>
-            <div class="text bg-white p-4">
-              <h3 class="heading" style="text-align: right;">تنمية و تطوير ذكاء طفلك</h3>
-              <p style="text-align: right;">مساعدة طفلك لتنمية مهاراته</p>
-            </div>
-          </div>
-        </div>
-        @endif
-      </div>
-    </div>
-  </section>
-  <!--blog section end-->
 
 @endsection

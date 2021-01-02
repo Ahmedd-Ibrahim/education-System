@@ -26,7 +26,10 @@
       <div class="row no-gutters slider-text align-items-center justify-content-center">
         <div class="col-md-9 ftco-animate text-center">
           <h1 class="mb-2 bread">اخر الأخبار</h1>
-          <p class="breadcrumbs"><span class="mr-2"><a href="{{route('front')}}">الرئيسية <i class="icon ion-ios-arrow-back" style="color: white;"></i></a></span> <span>الأخبار <i class="icon ion-ios-arrow-back" style="color: white;"></i></a></span></p>
+          <p class="breadcrumbs">
+              <span class="mr-2"><a href="{{route('front')}}">الرئيسية <i class="icon ion-ios-arrow-back" style="color: white;"></i></a>
+            </span><a href="{{route('front.posts')}}"> <span>الأخبار <i class="icon ion-ios-arrow-back" style="color: white;"></i></a></span>
+            </p>
         </div>
       </div>
     </div>
@@ -40,12 +43,15 @@
                   @foreach ($blogs as $blog)
                   <div class="col-md-6 col-lg-4 ftco-animate">
                     <div class="blog-entry">
-                      <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{asset('style/front/image/').'/'.$blog->image}}');">
+                      <a href="{{route('front.posts.single',$blog->id)}}" class="block-20 d-flex align-items-end" style="background-image: url('{{asset('style/front/image/').'/'.$blog->image}}');">
                       </a>
                       <div class="text bg-white p-4">
                         <h3 class="heading" style="text-align: right;">{{$blog->title}}</h3>
-                      <p style="text-align: right;">{{strip_tags($blog->content)}}</p>
-                        <div class="d-flex align-items-center mt-4">
+                        <div class="row">
+                            <div class="col-9 text-truncate">
+                                <p style="text-center: right;">{!!$blog->content!!}</p>
+                            </div>
+                          </div>                        <div class="d-flex align-items-center mt-4">
                             <p class="mb-0"><a href="{{route('front.posts.single',$blog->id)}}" class="btn btn-secondary">اقرأ المزيد <span class="ion-ios-arrow-round-back" style="color: white;"></span></a></p>
                             <p class="ml-auto mb-0">
                             </p>
@@ -54,6 +60,10 @@
                     </div>
                   </div>
                   @endforeach
+                  @else
+                  <div class="text">
+                      No result
+                  </div>
                   @endif
 
       </div>

@@ -50,15 +50,24 @@ class FrontController extends Controller
     ));
     }
 
-    public function blog() // blog page
+    public function blog(Request $request) // blog page
     {
+
+        $key = $request->key;
+
+        $blogs = Blog::paginate(12);
+
+        if($request->has('key'))
+        {
+            $blogs = Blog::where('title','like','%'.$request->key .'%')->orWhere('content','like','%'.$request->key .'%')->paginate(12);
+
+        }
         $slide = Slide::first();
 
         $info = GetBaseInfo();
 
-        $blogs = Blog::paginate(12);
-
         return view('website.frontend.blog',compact('info','slide','blogs'));
+
     }
 
     public function SinglePage($id)
@@ -71,9 +80,72 @@ class FrontController extends Controller
          $latests = Blog::latest()->limit(3)->get();
 
          $info = GetBaseInfo();
-         
-        return view('website.frontend.blog-single-page',compact('post','slide','latests','info'));
 
+         $comments = $post->Comments()->where('active','true')->get();
+
+         $subjects = SiteSubject::paginate(6);
+        return view('website.frontend.blog-single-page',compact('post','slide','latests','info','subjects','comments'));
+
+    }
+
+
+    public function Contact()
+    {
+        $info = GetBaseInfo();
+
+        $slide = Slide::first();
+
+        return view('website.frontend.contact',compact('info','slide'));
+
+
+    }
+
+    public function Path()
+    {
+        $info = GetBaseInfo();
+
+        $slide = Slide::first();
+
+        $subjects = SiteSubject::paginate(9);
+
+        return view('website.frontend.study_path',compact('info','slide','subjects'));
+
+
+    }
+
+    public function Professtional()
+    {
+        $info = GetBaseInfo();
+
+        $slide = Slide::first();
+
+        $professionals = Professional::paginate(20);
+
+        return view('website.frontend.professtional',compact('info','slide','professionals'));
+    }
+
+    public function About()
+    {
+        $info = GetBaseInfo();
+
+        $slide = Slide::first();
+
+        // $provides = Provide::paginate(10);
+
+        $services = Service::paginate(10);
+
+        $static = StaticTitle::first();
+
+
+        $experinces = SiteExperince::first();
+
+        $proofs = Proof::paginate(10);
+
+
+        return view('website.frontend.about',
+        compact('info','slide','services','static',
+        'experinces','proofs'
+    ));
     }
 
     public function create()

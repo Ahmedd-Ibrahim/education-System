@@ -16,8 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::paginate(40);
-        
+        $blogs = Blog::paginate(20);
+
         return view('website.blog.index',compact('blogs'));
     }
 

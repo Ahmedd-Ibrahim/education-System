@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->middleware(['permission:show website'])->only(['index']);
-        $this->middleware(['permission:store website'])->only(['create','store']);
+        $this->middleware(['permission:store website'])->only(['create']);
         $this->middleware(['permission:update website'])->only(['update','edit','active']);
         $this->middleware(['permission:delete website'])->only(['destroy']);
     }
@@ -56,7 +56,7 @@ class CommentController extends Controller
 
         $post->Comments()->save($comment);
 
-        return redirect()->route('admin.front.comment.index')->with('success','Comemnt Created');
+        return redirect()->back()->with('success','Comemnt Created');
     }
 
     /**

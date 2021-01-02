@@ -11,7 +11,6 @@
                 <span class="text"><a href="https://goo.gl/maps/rD5hvcmv3FdnYELa6" target="_blank" style="outline: none;text-decoration: none;color: white;">
 
                     @isset ($info){{$info->address}}@endisset
-
                 </a></span>
               </div>
               <div class="col-md pr-4 d-flex topper align-items-center">
@@ -47,19 +46,19 @@
                 <a href="{{route('front')}}" id="nav-linkk" class="nav-link pl-0">الرئيسية</a>
               </li>
               <li class="nav-item">
-                <a href="about.html" id="nav-linkk" class="nav-link">من نحن</a>
+                <a href="{{route('front.about')}}" id="nav-linkk" class="nav-link">من نحن</a>
               </li>
               <li class="nav-item">
-                <a href="teacher.html" id="nav-linkk" class="nav-link">المعلمين</a>
+                <a href="{{route('front.professtional')}}" id="nav-linkk" class="nav-link">المعلمين</a>
               </li>
               <li class="nav-item">
-                <a href="courses.html" id="nav-linkk" class="nav-link">المسارات التعليمية</a>
+                <a href="{{route('front.path')}}" id="nav-linkk" class="nav-link">المسارات التعليمية</a>
               </li>
               <li class="nav-item">
                 <a href="{{route('front.posts')}}" id="nav-linkk" class="nav-link">المدونة</a>
               </li>
               <li class="nav-item">
-                <a href="contact.html" id="nav-linkk" class="nav-link">تواصل معنا</a>
+                <a href="{{route('front.contact')}}" id="nav-linkk" class="nav-link">تواصل معنا</a>
               </li>
             </ul>
           </div>

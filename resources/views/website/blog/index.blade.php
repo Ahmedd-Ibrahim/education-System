@@ -19,19 +19,18 @@
             <!-- /row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="white-box">
+                    <div class="white-box table-responsive container-fluid">
                         <h3 class="box-title m-b-0">blog</h3>
                         <p class="text-muted m-b-20">All Posts</p>
-                        <table id="demo-foo-row-toggler" style="
-                        display: block;
-                        overflow: hidden;
-                    " class="table toggle-circle table-hover">
+                        {{$blogs->links()}}
+                        <table id="demo-foo-row-toggler"
+                         class="table color-bordered-table info-bordered-table ">
                             <thead>
-                            <tr>
+                            <tr >
                                 <th data-toggle="true">title</th>
                                 <th data-toggle="true">intro</th>
                                 <th> image </th>
-                                <th> content </th>
+
                                 <th data-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>
                             </tr>
@@ -45,12 +44,7 @@
                                         <td>{{$blog->intro}}</td>
 
                                         <td><img style="width:100px;" src="{{url('style/front/image/'.$blog->image)}}" alt=""></td>
-                                        <td >
-                                            <p class="text-wrap">
-                                                {{strip_tags($blog->content)}}
-                                            </p>
-                                            {{-- {!!$blog->content!!} --}}
-                                        </td>
+
                                         <td>
                                             {{$blog->created_at}}
                                         </td>
@@ -73,12 +67,13 @@
                                 <th data-toggle="true">title</th>
                                 <th data-toggle="true">intro</th>
                                 <th> image </th>
-                                <th> content </th>
+
                                 <th data-hide="all"> Created at </th>
                                 <th data-hide="all"> Action </th>
                             </tr>
                             </thead>
                         </table>
+                        {{$blogs->links()}}
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@
                         <h3 class="box-title m-b-0">comment</h3>
                         <p class="text-muted m-b-20">All comments</p>
                         {{$comments->links()}}
-                        <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                        <table id="demo-foo-row-toggler" class="table toggle-circle table-hover table-responsive-sm">
                             <thead>
                             <tr>
                                 <th data-toggle="true">email</th>
