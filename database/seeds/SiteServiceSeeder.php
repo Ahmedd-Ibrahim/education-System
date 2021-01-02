@@ -40,6 +40,7 @@ class SiteServiceSeeder extends Seeder
             'description'=>'توجد لدينا حديقة حيوان لزيادة المتعة لدي طفلك ولتعرفه علي عالم الحيوان',
             ]);
 
+        
         Service::create([
             'class'=>'flaticon-jigsaw',
 

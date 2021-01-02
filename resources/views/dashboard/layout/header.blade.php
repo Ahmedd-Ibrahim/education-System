@@ -30,10 +30,10 @@
     <!-- color CSS -->
     <link href="{{asset('style/backend/custom/css/colors/blue.css')}}" id="theme" rel="stylesheet">
     <!-- Calendar CSS -->
-   
-    @yield('head')
-@yield('css')
-
+    @stack('stylesheets')
+ @yield('head')
+ @yield('css')
+ @stack('custom-css')
     <style>
         #Students-table_filter{
             display: inline-block;
@@ -44,6 +44,7 @@
             border: none;
 
         }
+
 
     </style>
 {{--    <link href="{{asset('style/backend/plugins/bower_components/calendar/dist/fullcalendar.min.css')}}" rel="stylesheet" />--}}

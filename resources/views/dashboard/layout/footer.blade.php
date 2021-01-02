@@ -1,8 +1,9 @@
-<footer class="footer text-center">   Copyright &copy;
+{{-- <footer class="footer text-center">   Copyright &copy;
     <script>
       document.write(new Date().getFullYear());
     </script>
-    All rights reserved | Devest </footer>
+    All rights reserved | Devest
+ </footer> --}}
     </div>
 {{--<!-- jQuery -->--}}
 {{--<script src="{{asset('style/backend/plugins/bower_components/jquery/dist/jquery.min.js')}}"></script>--}}
