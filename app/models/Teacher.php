@@ -13,11 +13,24 @@ class Teacher extends Model
     protected $hidden= ['pivot'];
 
 
+    public function getImagePath(){
+        $val = $this->avatar;
+        if($val !== ''){
+            return asset( 'style/backend/images/'.$val);
+        }
+        if($this->gender == 'female'){
+            return asset( 'style/backend/images/defaults/students/female.png');
+        } else {
+            return asset( 'style/backend/images/defaults/students/male.jpg');
+        }
+    }
+
+
     /*Begin Relations*/
 
     public function Subjects()
     {
-        return $this->belongsTo(Subject::class,'subject_id','id');
+        return $this->belongsToMany(Subject::class,'teacher_subject');
     }
 
     public function Classes()

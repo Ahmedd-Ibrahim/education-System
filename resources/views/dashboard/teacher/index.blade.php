@@ -23,7 +23,7 @@
                     <div class="white-box">
                         <div class="row">
                             <div class="col-md-4 col-sm-4 text-center">
-                                <a href="{{route('admin.teacher.edit',$teacher)}}"><img src="{{asset('style/backend/images/'.$teacher->avatar)}}" alt="user" class="img-circle img-responsive"></a>
+                                <a href="{{route('admin.teacher.edit',$teacher)}}"><img src="{{$teacher->getImagePath()}}" alt="user" class="img-circle img-responsive"></a>
                             </div>
                             <div class="col-md-8 col-sm-8">
                                 <h3 class="box-title m-b-0">{{$teacher->name}}</h3>
@@ -32,11 +32,11 @@
                                     {{$teacher->gender}}
                                     <br/>
                                     <br/>
-                                    <abbr title="Phone">P:</abbr> {{$teacher->phone}}
+                                    <abbr title="Phone"></abbr> {{$teacher->phone}}
                                     @if(isset($teacher->Subjects) )
                                         <h5>Subject:
 
-                                         {{$teacher->Subjects->name}},
+                                         {{$teacher->Subjects()->first()->name}},
 
                                         </h5>
                                     @endif

@@ -68,8 +68,11 @@ class teacherController extends Controller
     }
     public function edit(Teacher $teacher)
     {
+
+
         $subjects = Subject::all();
         $userSubs = $teacher->Subjects;
+        
         $subID = []; // Subjects Id if Exists
          if(isset($userSubs))
          {
@@ -82,7 +85,7 @@ class teacherController extends Controller
         return view('dashboard.teacher.edit',compact('teacher','subID','subjects'));
     }
 
-    public function update(TeacherRequest $request, Teacher $teacher)
+    public function update(Request $request, Teacher $teacher)
     {
         if(!$teacher){
             return redirect()->back()->with('error','This user not found');
@@ -97,7 +100,12 @@ class teacherController extends Controller
         $data = $request->all();
         $data['avatar'] = $path;
         $teacher->update($data);
-        $teacher->Subjects()->sync($request->subjects);
+
+        if($request->has('subjects'))
+        {
+            $teacher->Subjects()->sync($request->subjects);
+        }
+
         return redirect()->route('admin.teacher.index')->with('success','User Updated');
 
     }

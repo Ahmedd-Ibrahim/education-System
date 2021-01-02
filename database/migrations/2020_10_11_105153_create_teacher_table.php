@@ -21,17 +21,11 @@ class CreateTeacherTable extends Migration
             $table->text('desc')->nullable(true);
             $table->string('avatar',255)->nullable(true);
             $table->string('phone')->nullable(true);
-            $table->integer('subject_id')->unsigned()->nullable();
+
             $table->timestamps();
         });
 
-        Schema::table('teacher', function (Blueprint $table) {
-
-            $table->foreign('subject_id')
-                ->on('subjects')
-                ->references('id')
-                ->onUpdate('cascade');
-        });
+    
     }
 
     /**

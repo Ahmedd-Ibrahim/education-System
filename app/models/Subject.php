@@ -13,7 +13,7 @@ class Subject extends Model
 /*Begin Relations*/
     public function Teachers()
     {
-        return $this->hasMany(Teacher::class,'subject_id','id');
+        return $this->belongsToMany(Teacher::class,'teacher_subject');
     }
 
     public function Students()
