@@ -77,13 +77,19 @@
   <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
 </div>
-<section id="wrapper" class="login-register" style="background:url({{asset('style/backend/plugins/images/login-register.jpg')}}) center center/cover no-repeat!important">
+<section id="wrapper" class="login-register" style="background:url({{asset('style/backend/plugins/images/login.jpg')}}) center center/cover no-repeat!important">
     <div class="login-box login-sidebar">
         <div class="white-box">
             <form class="form-horizontal form-material" id="loginform" method="POST" action="{{ route('login') }}">
                 @csrf
-                <a href="javascript:void(0)" class="text-center db"><img src="{{asset('style/backend/plugins/images/eliteadmin-logo-dark.png')}}" alt="Home" />
-                    <br/><img src="{{asset('style/backend/plugins/images/eliteadmin-text-dark.png')}}" alt="Home" /></a>
+                {{-- <a href="javascript:void(0)" class="text-center db"><img src="{{asset('style/backend/plugins/images/eliteadmin-logo-dark.png')}}" alt="Home" />
+                    <br/>
+                    <img src="{{asset('style/backend/plugins/images/eliteadmin-text-dark.png')}}" alt="Home" />
+                </a> --}}
+                <a href="javascript:void(0)" class="text-center db"><img style="width: 100px" src="{{asset('style/backend/plugins/images/devest.jpg')}}" alt="Home" />
+                    {{-- <br/> --}}
+                    {{-- <img src="{{asset('style/backend/plugins/images/eliteadmin-text-dark.png')}}" alt="Home" /> --}}
+                </a>
                 <div class="form-group m-t-40">
                     <div class="col-xs-12">
                         <input name="email" class="form-control" type="text" required="" placeholder="Email address">
