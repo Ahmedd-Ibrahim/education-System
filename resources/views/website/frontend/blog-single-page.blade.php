@@ -9,7 +9,7 @@
 </style>
 @endsection
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('style/front/image/').'/'.$slide->image}}');" style="direction: rtl;">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('style/front/image/').'/'}} @isset($slide->image){{$slide->image}} @endisset');" style="direction: rtl;">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center">
